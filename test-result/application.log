@@ -757,3 +757,562 @@
 13 Mar 2012 22:26:33,638 TRACE ~ after transaction completion
 13 Mar 2012 22:26:33,641 TRACE ~ closing session
 13 Mar 2012 22:26:33,642 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:14,641 DEBUG ~ opened session at timestamp: 13316968346
+13 Mar 2012 22:47:14,643 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:14,643 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:14,644 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:14,645 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:14,645 DEBUG ~ begin
+13 Mar 2012 22:47:14,646 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:14,646 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:14,647 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:14,647 TRACE ~ after transaction begin
+13 Mar 2012 22:47:14,656 DEBUG ~ commit
+13 Mar 2012 22:47:14,657 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:14,657 TRACE ~ before transaction completion
+13 Mar 2012 22:47:14,658 TRACE ~ before transaction completion
+13 Mar 2012 22:47:14,658 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:14,659 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:14,659 TRACE ~ after transaction completion
+13 Mar 2012 22:47:14,660 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:14,660 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:14,661 TRACE ~ after transaction completion
+13 Mar 2012 22:47:14,662 TRACE ~ closing session
+13 Mar 2012 22:47:14,662 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:16,521 DEBUG ~ opened session at timestamp: 13316968365
+13 Mar 2012 22:47:16,522 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:16,523 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:16,523 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:16,524 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:16,525 DEBUG ~ begin
+13 Mar 2012 22:47:16,527 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:16,528 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:16,528 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:16,529 TRACE ~ after transaction begin
+13 Mar 2012 22:47:16,540 DEBUG ~ commit
+13 Mar 2012 22:47:16,541 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:16,542 TRACE ~ before transaction completion
+13 Mar 2012 22:47:16,542 TRACE ~ before transaction completion
+13 Mar 2012 22:47:16,542 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:16,543 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:16,543 TRACE ~ after transaction completion
+13 Mar 2012 22:47:16,544 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:16,544 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:16,545 TRACE ~ after transaction completion
+13 Mar 2012 22:47:16,546 TRACE ~ closing session
+13 Mar 2012 22:47:16,547 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:28,704 DEBUG ~ opened session at timestamp: 13316968487
+13 Mar 2012 22:47:28,705 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:28,705 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:28,706 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:28,706 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:28,706 DEBUG ~ begin
+13 Mar 2012 22:47:28,707 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:28,707 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:28,708 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:28,708 TRACE ~ after transaction begin
+13 Mar 2012 22:47:28,879 TRACE ~ unable to locate HQL query plan in cache; generating (from models.security.User where username = ?)
+13 Mar 2012 22:47:29,105 DEBUG ~ parse() - HQL: from models.security.User where username = ?
+13 Mar 2012 22:47:29,107 TRACE ~ -> statement
+13 Mar 2012 22:47:29,111 TRACE ~ ---> selectStatement
+13 Mar 2012 22:47:29,113 TRACE ~ -----> queryRule
+13 Mar 2012 22:47:29,114 TRACE ~ -------> selectFrom
+13 Mar 2012 22:47:29,114 TRACE ~ ---------> fromClause
+13 Mar 2012 22:47:29,120 TRACE ~ -----------> fromRange
+13 Mar 2012 22:47:29,121 TRACE ~ -------------> fromClassOrOuterQueryPath
+13 Mar 2012 22:47:29,122 TRACE ~ ---------------> path
+13 Mar 2012 22:47:29,122 TRACE ~ -----------------> identifier
+13 Mar 2012 22:47:29,123 TRACE ~ <----------------- identifier
+13 Mar 2012 22:47:29,124 TRACE ~ -----------------> identifier
+13 Mar 2012 22:47:29,125 TRACE ~ <----------------- identifier
+13 Mar 2012 22:47:29,125 TRACE ~ -----------------> identifier
+13 Mar 2012 22:47:29,126 TRACE ~ <----------------- identifier
+13 Mar 2012 22:47:29,127 TRACE ~ <--------------- path
+13 Mar 2012 22:47:29,128 TRACE ~ <------------- fromClassOrOuterQueryPath
+13 Mar 2012 22:47:29,129 TRACE ~ <----------- fromRange
+13 Mar 2012 22:47:29,130 TRACE ~ <--------- fromClause
+13 Mar 2012 22:47:29,130 TRACE ~ <------- selectFrom
+13 Mar 2012 22:47:29,131 TRACE ~ -------> whereClause
+13 Mar 2012 22:47:29,132 TRACE ~ ---------> logicalExpression
+13 Mar 2012 22:47:29,133 TRACE ~ -----------> expression
+13 Mar 2012 22:47:29,133 TRACE ~ -------------> logicalOrExpression
+13 Mar 2012 22:47:29,134 TRACE ~ ---------------> logicalAndExpression
+13 Mar 2012 22:47:29,135 TRACE ~ -----------------> negatedExpression
+13 Mar 2012 22:47:29,174 TRACE ~ -------------------> equalityExpression
+13 Mar 2012 22:47:29,176 TRACE ~ ---------------------> relationalExpression
+13 Mar 2012 22:47:29,177 TRACE ~ -----------------------> concatenation
+13 Mar 2012 22:47:29,178 TRACE ~ -------------------------> additiveExpression
+13 Mar 2012 22:47:29,179 TRACE ~ ---------------------------> multiplyExpression
+13 Mar 2012 22:47:29,180 TRACE ~ -----------------------------> unaryExpression
+13 Mar 2012 22:47:29,181 TRACE ~ -------------------------------> atom
+13 Mar 2012 22:47:29,182 TRACE ~ ---------------------------------> primaryExpression
+13 Mar 2012 22:47:29,183 TRACE ~ -----------------------------------> identPrimary
+13 Mar 2012 22:47:29,184 TRACE ~ -------------------------------------> identifier
+13 Mar 2012 22:47:29,185 TRACE ~ <------------------------------------- identifier
+13 Mar 2012 22:47:29,188 TRACE ~ <----------------------------------- identPrimary
+13 Mar 2012 22:47:29,189 TRACE ~ <--------------------------------- primaryExpression
+13 Mar 2012 22:47:29,190 TRACE ~ <------------------------------- atom
+13 Mar 2012 22:47:29,191 TRACE ~ <----------------------------- unaryExpression
+13 Mar 2012 22:47:29,192 TRACE ~ <--------------------------- multiplyExpression
+13 Mar 2012 22:47:29,192 TRACE ~ <------------------------- additiveExpression
+13 Mar 2012 22:47:29,193 TRACE ~ <----------------------- concatenation
+13 Mar 2012 22:47:29,194 TRACE ~ <--------------------- relationalExpression
+13 Mar 2012 22:47:29,194 TRACE ~ ---------------------> relationalExpression
+13 Mar 2012 22:47:29,195 TRACE ~ -----------------------> concatenation
+13 Mar 2012 22:47:29,196 TRACE ~ -------------------------> additiveExpression
+13 Mar 2012 22:47:29,196 TRACE ~ ---------------------------> multiplyExpression
+13 Mar 2012 22:47:29,197 TRACE ~ -----------------------------> unaryExpression
+13 Mar 2012 22:47:29,198 TRACE ~ -------------------------------> atom
+13 Mar 2012 22:47:29,198 TRACE ~ ---------------------------------> primaryExpression
+13 Mar 2012 22:47:29,199 TRACE ~ -----------------------------------> parameter
+13 Mar 2012 22:47:29,200 TRACE ~ <----------------------------------- parameter
+13 Mar 2012 22:47:29,201 TRACE ~ <--------------------------------- primaryExpression
+13 Mar 2012 22:47:29,201 TRACE ~ <------------------------------- atom
+13 Mar 2012 22:47:29,202 TRACE ~ <----------------------------- unaryExpression
+13 Mar 2012 22:47:29,207 TRACE ~ <--------------------------- multiplyExpression
+13 Mar 2012 22:47:29,208 TRACE ~ <------------------------- additiveExpression
+13 Mar 2012 22:47:29,212 TRACE ~ <----------------------- concatenation
+13 Mar 2012 22:47:29,213 TRACE ~ <--------------------- relationalExpression
+13 Mar 2012 22:47:29,214 TRACE ~ <------------------- equalityExpression
+13 Mar 2012 22:47:29,214 TRACE ~ <----------------- negatedExpression
+13 Mar 2012 22:47:29,215 TRACE ~ <--------------- logicalAndExpression
+13 Mar 2012 22:47:29,216 TRACE ~ <------------- logicalOrExpression
+13 Mar 2012 22:47:29,216 TRACE ~ <----------- expression
+13 Mar 2012 22:47:29,217 TRACE ~ <--------- logicalExpression
+13 Mar 2012 22:47:29,218 TRACE ~ <------- whereClause
+13 Mar 2012 22:47:29,218 TRACE ~ <----- queryRule
+13 Mar 2012 22:47:29,220 TRACE ~ <--- selectStatement
+13 Mar 2012 22:47:29,221 TRACE ~ <- statement
+13 Mar 2012 22:47:29,247 DEBUG ~ --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  \-[FROM] Node: 'from'
+    |     \-[RANGE] Node: 'RANGE'
+    |        \-[DOT] Node: '.'
+    |           +-[DOT] Node: '.'
+    |           |  +-[IDENT] Node: 'models'
+    |           |  \-[IDENT] Node: 'security'
+    |           \-[IDENT] Node: 'User'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[IDENT] Node: 'username'
+          \-[PARAM] Node: '?'
+
+13 Mar 2012 22:47:29,248 DEBUG ~ throwQueryException() : no errors
+13 Mar 2012 22:47:29,295 TRACE ~ -> statement (query [QUERY])
+13 Mar 2012 22:47:29,296 TRACE ~ ---> selectStatement (query [QUERY])
+13 Mar 2012 22:47:29,297 TRACE ~ -----> query (query [QUERY])
+13 Mar 2012 22:47:29,301 DEBUG ~ select << begin [level=1, statement=select]
+13 Mar 2012 22:47:29,302 TRACE ~ -------> fromClause (from [FROM])
+13 Mar 2012 22:47:29,310 TRACE ~ ---------> fromElementList (RANGE [RANGE])
+13 Mar 2012 22:47:29,311 TRACE ~ -----------> fromElement (RANGE [RANGE])
+13 Mar 2012 22:47:29,312 TRACE ~ -------------> path (. [DOT])
+13 Mar 2012 22:47:29,317 TRACE ~ ---------------> path (. [DOT])
+13 Mar 2012 22:47:29,318 TRACE ~ -----------------> path (models [IDENT])
+13 Mar 2012 22:47:29,318 TRACE ~ -------------------> identifier (models [IDENT])
+13 Mar 2012 22:47:29,319 TRACE ~ <------------------- identifier
+13 Mar 2012 22:47:29,320 TRACE ~ <----------------- path
+13 Mar 2012 22:47:29,321 TRACE ~ -----------------> identifier (security [IDENT])
+13 Mar 2012 22:47:29,321 TRACE ~ <----------------- identifier
+13 Mar 2012 22:47:29,322 TRACE ~ <--------------- path
+13 Mar 2012 22:47:29,322 TRACE ~ ---------------> identifier (User [IDENT])
+13 Mar 2012 22:47:29,323 TRACE ~ <--------------- identifier
+13 Mar 2012 22:47:29,323 TRACE ~ <------------- path
+13 Mar 2012 22:47:29,338 DEBUG ~ FromClause{level=1} :  models.security.User (no alias) -> user0_
+13 Mar 2012 22:47:29,339 TRACE ~ <----------- fromElement
+13 Mar 2012 22:47:29,339 TRACE ~ <--------- fromElementList
+13 Mar 2012 22:47:29,340 TRACE ~ <------- fromClause
+13 Mar 2012 22:47:29,340 TRACE ~ -------> whereClause (where [WHERE])
+13 Mar 2012 22:47:29,341 TRACE ~ ---------> logicalExpr (= [EQ])
+13 Mar 2012 22:47:29,341 TRACE ~ -----------> comparisonExpr (= [EQ])
+13 Mar 2012 22:47:29,345 TRACE ~ -------------> exprOrSubquery (username [IDENT])
+13 Mar 2012 22:47:29,346 TRACE ~ ---------------> expr (username [IDENT])
+13 Mar 2012 22:47:29,346 TRACE ~ -----------------> addrExpr (username [IDENT])
+13 Mar 2012 22:47:29,347 TRACE ~ -------------------> identifier (username [IDENT])
+13 Mar 2012 22:47:29,347 TRACE ~ <------------------- identifier
+13 Mar 2012 22:47:29,349 TRACE ~ attempting to resolve property [username] as a non-qualified ref
+13 Mar 2012 22:47:29,350 DEBUG ~ Resolved :  {synthetic-alias} -> {synthetic-alias}
+13 Mar 2012 22:47:29,353 TRACE ~ handling property dereference [models.security.User (null) -> username (class)]
+13 Mar 2012 22:47:29,354 TRACE ~ <----------------- addrExpr
+13 Mar 2012 22:47:29,354 DEBUG ~ getDataType() : username -> org.hibernate.type.StringType@3b05c7e1
+13 Mar 2012 22:47:29,356 DEBUG ~ Resolved :  {synthetic-alias}.username -> user0_.USER_NAME
+13 Mar 2012 22:47:29,357 TRACE ~ <--------------- expr
+13 Mar 2012 22:47:29,358 TRACE ~ <------------- exprOrSubquery
+13 Mar 2012 22:47:29,358 TRACE ~ -------------> exprOrSubquery (? [PARAM])
+13 Mar 2012 22:47:29,359 TRACE ~ ---------------> expr (? [PARAM])
+13 Mar 2012 22:47:29,359 TRACE ~ -----------------> parameter (? [PARAM])
+13 Mar 2012 22:47:29,377 TRACE ~ <----------------- parameter
+13 Mar 2012 22:47:29,377 TRACE ~ <--------------- expr
+13 Mar 2012 22:47:29,378 TRACE ~ <------------- exprOrSubquery
+13 Mar 2012 22:47:29,378 TRACE ~ <----------- comparisonExpr
+13 Mar 2012 22:47:29,379 TRACE ~ <--------- logicalExpr
+13 Mar 2012 22:47:29,379 TRACE ~ <------- whereClause
+13 Mar 2012 22:47:29,380 DEBUG ~ select : finishing up [level=1, statement=select]
+13 Mar 2012 22:47:29,381 DEBUG ~ processQuery() :  ( SELECT ( FromClause{level=1} USER user0_ ) ( where ( = ( user0_.USER_NAME {synthetic-alias} username ) ? ) ) )
+13 Mar 2012 22:47:29,389 DEBUG ~ Derived SELECT clause created.
+13 Mar 2012 22:47:29,398 DEBUG ~ Using FROM fragment [USER user0_ inner join PERSON user0_1_ on user0_.id=user0_1_.id]
+13 Mar 2012 22:47:29,399 DEBUG ~ select >> end [level=1, statement=select]
+13 Mar 2012 22:47:29,400 TRACE ~ <----- query
+13 Mar 2012 22:47:29,400 TRACE ~ <--- selectStatement
+13 Mar 2012 22:47:29,400 TRACE ~ <- statement
+13 Mar 2012 22:47:29,402 DEBUG ~ --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (PERSON,USER)
+    +-[SELECT_CLAUSE] SelectClause: '{derived select clause}'
+    |  +-[SELECT_EXPR] SelectExpressionImpl: 'user0_.id as id0_' {FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=USER,tableAlias=user0_,origin=null,columns={,className=models.security.User}}}
+    |  \-[SQL_TOKEN] SqlFragment: 'user0_1_.FIRST_NAME as FIRST2_0_, user0_1_.LAST_NAME as LAST3_0_, user0_.guest as guest1_, user0_.PASSWORD as PASSWORD1_, user0_.USER_NAME as USER3_1_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[], fromElementByTableAlias=[user0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'USER user0_ inner join PERSON user0_1_ on user0_.id=user0_1_.id' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=null,role=null,tableName=USER,tableAlias=user0_,origin=null,columns={,className=models.security.User}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'user0_.USER_NAME' {propertyName=username,dereferenceType=ALL,propertyPath=username,path={synthetic-alias}.username,tableAlias=user0_,className=models.security.User,classAlias=null}
+          |  +-[IDENT] IdentNode: '{synthetic-alias}' {originalText={synthetic-alias}}
+          |  \-[IDENT] IdentNode: 'username' {originalText=username}
+          \-[PARAM] ParameterNode: '?' {ordinal=0, expectedType=org.hibernate.type.StringType@3b05c7e1}
+
+13 Mar 2012 22:47:29,405 DEBUG ~ throwQueryException() : no errors
+13 Mar 2012 22:47:29,424 TRACE ~ -> statement (SELECT [SELECT])
+13 Mar 2012 22:47:29,424 TRACE ~ ---> selectStatement (SELECT [SELECT])
+13 Mar 2012 22:47:29,425 TRACE ~ -----> selectClause ({derived select clause} [SELECT_CLAUSE])
+13 Mar 2012 22:47:29,426 TRACE ~ -------> selectColumn (user0_.id as id0_ [SELECT_EXPR])
+13 Mar 2012 22:47:29,426 TRACE ~ ---------> selectExpr (user0_.id as id0_ [SELECT_EXPR])
+13 Mar 2012 22:47:29,427 TRACE ~ -----------> selectAtom (user0_.id as id0_ [SELECT_EXPR])
+13 Mar 2012 22:47:29,427 TRACE ~ <----------- selectAtom
+13 Mar 2012 22:47:29,428 TRACE ~ <--------- selectExpr
+13 Mar 2012 22:47:29,428 TRACE ~ <------- selectColumn
+13 Mar 2012 22:47:29,429 TRACE ~ -------> selectColumn (user0_1_.FIRST_NAME as FIRST2_0_, user0_1_.LAST_NAME as LAST3_0_, user0_.guest as guest1_, user0_.PASSWORD as PASSWORD1_, user0_.USER_NAME as USER3_1_ [SQL_TOKEN])
+13 Mar 2012 22:47:29,429 TRACE ~ ---------> selectExpr (user0_1_.FIRST_NAME as FIRST2_0_, user0_1_.LAST_NAME as LAST3_0_, user0_.guest as guest1_, user0_.PASSWORD as PASSWORD1_, user0_.USER_NAME as USER3_1_ [SQL_TOKEN])
+13 Mar 2012 22:47:29,430 TRACE ~ -----------> selectAtom (user0_1_.FIRST_NAME as FIRST2_0_, user0_1_.LAST_NAME as LAST3_0_, user0_.guest as guest1_, user0_.PASSWORD as PASSWORD1_, user0_.USER_NAME as USER3_1_ [SQL_TOKEN])
+13 Mar 2012 22:47:29,431 TRACE ~ <----------- selectAtom
+13 Mar 2012 22:47:29,431 TRACE ~ <--------- selectExpr
+13 Mar 2012 22:47:29,432 TRACE ~ <------- selectColumn
+13 Mar 2012 22:47:29,432 TRACE ~ <----- selectClause
+13 Mar 2012 22:47:29,432 TRACE ~ -----> from (from [FROM])
+13 Mar 2012 22:47:29,433 TRACE ~ -------> fromTable (USER user0_ inner join PERSON user0_1_ on user0_.id=user0_1_.id [FROM_FRAGMENT])
+13 Mar 2012 22:47:29,434 TRACE ~ <------- fromTable
+13 Mar 2012 22:47:29,434 TRACE ~ <----- from
+13 Mar 2012 22:47:29,434 TRACE ~ -----> whereExpr (= [EQ])
+13 Mar 2012 22:47:29,435 TRACE ~ -------> booleanExpr (= [EQ])
+13 Mar 2012 22:47:29,435 TRACE ~ ---------> comparisonExpr (= [EQ])
+13 Mar 2012 22:47:29,436 TRACE ~ -----------> binaryComparisonExpression (= [EQ])
+13 Mar 2012 22:47:29,436 TRACE ~ -------------> expr (user0_.USER_NAME [DOT])
+13 Mar 2012 22:47:29,436 TRACE ~ ---------------> simpleExpr (user0_.USER_NAME [DOT])
+13 Mar 2012 22:47:29,437 TRACE ~ -----------------> addrExpr (user0_.USER_NAME [DOT])
+13 Mar 2012 22:47:29,437 TRACE ~ <----------------- addrExpr
+13 Mar 2012 22:47:29,438 TRACE ~ <--------------- simpleExpr
+13 Mar 2012 22:47:29,438 TRACE ~ <------------- expr
+13 Mar 2012 22:47:29,439 TRACE ~ -------------> expr (? [PARAM])
+13 Mar 2012 22:47:29,439 TRACE ~ ---------------> simpleExpr (? [PARAM])
+13 Mar 2012 22:47:29,439 TRACE ~ -----------------> parameter (? [PARAM])
+13 Mar 2012 22:47:29,440 TRACE ~ <----------------- parameter
+13 Mar 2012 22:47:29,440 TRACE ~ <--------------- simpleExpr
+13 Mar 2012 22:47:29,441 TRACE ~ <------------- expr
+13 Mar 2012 22:47:29,441 TRACE ~ <----------- binaryComparisonExpression
+13 Mar 2012 22:47:29,442 TRACE ~ <--------- comparisonExpr
+13 Mar 2012 22:47:29,442 TRACE ~ <------- booleanExpr
+13 Mar 2012 22:47:29,442 TRACE ~ <----- whereExpr
+13 Mar 2012 22:47:29,443 TRACE ~ <--- selectStatement
+13 Mar 2012 22:47:29,443 TRACE ~ <- statement
+13 Mar 2012 22:47:29,444 DEBUG ~ HQL: from models.security.User where username = ?
+13 Mar 2012 22:47:29,444 DEBUG ~ SQL: select user0_.id as id0_, user0_1_.FIRST_NAME as FIRST2_0_, user0_1_.LAST_NAME as LAST3_0_, user0_.guest as guest1_, user0_.PASSWORD as PASSWORD1_, user0_.USER_NAME as USER3_1_ from USER user0_ inner join PERSON user0_1_ on user0_.id=user0_1_.id where user0_.USER_NAME=?
+13 Mar 2012 22:47:29,445 DEBUG ~ throwQueryException() : no errors
+13 Mar 2012 22:47:29,455 TRACE ~ HQL param location recognition took 3 mills (from models.security.User where username = ?)
+13 Mar 2012 22:47:29,464 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:47:29,466 TRACE ~ find: from models.security.User where username = ?
+13 Mar 2012 22:47:29,467 TRACE ~ parameters: [admin]
+13 Mar 2012 22:47:29,468 TRACE ~ named parameters: {}
+13 Mar 2012 22:47:29,472 DEBUG ~ about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+13 Mar 2012 22:47:29,474 TRACE ~ preparing statement
+13 Mar 2012 22:47:29,485 TRACE ~ binding parameter [1] as [VARCHAR] - admin
+13 Mar 2012 22:47:29,486 TRACE ~ Bound [3] parameters total
+13 Mar 2012 22:47:29,487 DEBUG ~ about to open ResultSet (open ResultSets: 0, globally: 0)
+13 Mar 2012 22:47:29,495 TRACE ~ processing result set
+13 Mar 2012 22:47:29,496 TRACE ~ done processing result set (0 rows)
+13 Mar 2012 22:47:29,496 DEBUG ~ about to close ResultSet (open ResultSets: 1, globally: 1)
+13 Mar 2012 22:47:29,500 DEBUG ~ about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+13 Mar 2012 22:47:29,501 TRACE ~ closing statement
+13 Mar 2012 22:47:29,503 TRACE ~ total objects hydrated: 0
+13 Mar 2012 22:47:29,504 DEBUG ~ initializing non-lazy collections
+13 Mar 2012 22:47:29,507 INFO  ~ admin is trying to login.
+13 Mar 2012 22:47:29,512 DEBUG ~ commit
+13 Mar 2012 22:47:29,513 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:29,513 TRACE ~ before transaction completion
+13 Mar 2012 22:47:29,513 TRACE ~ before transaction completion
+13 Mar 2012 22:47:29,514 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:29,514 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:29,515 TRACE ~ after transaction completion
+13 Mar 2012 22:47:29,515 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:29,515 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:29,516 TRACE ~ after transaction completion
+13 Mar 2012 22:47:29,517 TRACE ~ closing session
+13 Mar 2012 22:47:29,517 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:29,541 DEBUG ~ opened session at timestamp: 13316968495
+13 Mar 2012 22:47:29,562 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:29,563 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:29,563 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:29,564 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:29,564 DEBUG ~ begin
+13 Mar 2012 22:47:29,565 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:29,565 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:29,566 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:29,566 TRACE ~ after transaction begin
+13 Mar 2012 22:47:29,578 DEBUG ~ commit
+13 Mar 2012 22:47:29,579 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:29,579 TRACE ~ before transaction completion
+13 Mar 2012 22:47:29,580 TRACE ~ before transaction completion
+13 Mar 2012 22:47:29,580 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:29,581 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:29,581 TRACE ~ after transaction completion
+13 Mar 2012 22:47:29,581 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:29,582 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:29,582 TRACE ~ after transaction completion
+13 Mar 2012 22:47:29,583 TRACE ~ closing session
+13 Mar 2012 22:47:29,583 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:33,068 DEBUG ~ opened session at timestamp: 13316968530
+13 Mar 2012 22:47:33,069 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:33,070 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:33,071 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:33,072 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:33,073 DEBUG ~ begin
+13 Mar 2012 22:47:33,073 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:33,074 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:33,075 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:33,075 TRACE ~ after transaction begin
+13 Mar 2012 22:47:33,083 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:47:33,085 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:47:33,085 TRACE ~ find: from models.security.User where username = ?
+13 Mar 2012 22:47:33,086 TRACE ~ parameters: []
+13 Mar 2012 22:47:33,086 TRACE ~ named parameters: {}
+13 Mar 2012 22:47:33,087 DEBUG ~ about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+13 Mar 2012 22:47:33,087 TRACE ~ preparing statement
+13 Mar 2012 22:47:33,088 TRACE ~ binding parameter [1] as [VARCHAR] - 
+13 Mar 2012 22:47:33,088 TRACE ~ Bound [3] parameters total
+13 Mar 2012 22:47:33,089 DEBUG ~ about to open ResultSet (open ResultSets: 0, globally: 0)
+13 Mar 2012 22:47:33,090 TRACE ~ processing result set
+13 Mar 2012 22:47:33,090 TRACE ~ done processing result set (0 rows)
+13 Mar 2012 22:47:33,090 DEBUG ~ about to close ResultSet (open ResultSets: 1, globally: 1)
+13 Mar 2012 22:47:33,092 DEBUG ~ about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+13 Mar 2012 22:47:33,093 TRACE ~ closing statement
+13 Mar 2012 22:47:33,093 TRACE ~ total objects hydrated: 0
+13 Mar 2012 22:47:33,093 DEBUG ~ initializing non-lazy collections
+13 Mar 2012 22:47:33,094 INFO  ~  is trying to login.
+13 Mar 2012 22:47:33,096 DEBUG ~ commit
+13 Mar 2012 22:47:33,096 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:33,097 TRACE ~ before transaction completion
+13 Mar 2012 22:47:33,097 TRACE ~ before transaction completion
+13 Mar 2012 22:47:33,098 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:33,098 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:33,098 TRACE ~ after transaction completion
+13 Mar 2012 22:47:33,099 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:33,099 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:33,099 TRACE ~ after transaction completion
+13 Mar 2012 22:47:33,100 TRACE ~ closing session
+13 Mar 2012 22:47:33,100 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:47:33,121 DEBUG ~ opened session at timestamp: 13316968531
+13 Mar 2012 22:47:33,122 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:47:33,123 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:47:33,123 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:47:33,123 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:47:33,124 DEBUG ~ begin
+13 Mar 2012 22:47:33,124 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:47:33,127 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:47:33,128 DEBUG ~ disabling autocommit
+13 Mar 2012 22:47:33,128 TRACE ~ after transaction begin
+13 Mar 2012 22:47:33,136 DEBUG ~ commit
+13 Mar 2012 22:47:33,137 TRACE ~ automatically flushing session
+13 Mar 2012 22:47:33,137 TRACE ~ before transaction completion
+13 Mar 2012 22:47:33,137 TRACE ~ before transaction completion
+13 Mar 2012 22:47:33,138 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:47:33,138 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:47:33,139 TRACE ~ after transaction completion
+13 Mar 2012 22:47:33,139 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:47:33,139 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:47:33,140 TRACE ~ after transaction completion
+13 Mar 2012 22:47:33,140 TRACE ~ closing session
+13 Mar 2012 22:47:33,141 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:48:45,138 DEBUG ~ opened session at timestamp: 13316969251
+13 Mar 2012 22:48:45,139 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:48:45,140 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:48:45,140 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:48:45,141 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:48:45,141 DEBUG ~ begin
+13 Mar 2012 22:48:45,142 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:48:45,142 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:48:45,143 DEBUG ~ disabling autocommit
+13 Mar 2012 22:48:45,143 TRACE ~ after transaction begin
+13 Mar 2012 22:48:45,147 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:48:45,148 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:48:45,149 TRACE ~ find: from models.security.User where username = ?
+13 Mar 2012 22:48:45,149 TRACE ~ parameters: [admin]
+13 Mar 2012 22:48:45,149 TRACE ~ named parameters: {}
+13 Mar 2012 22:48:45,150 DEBUG ~ about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+13 Mar 2012 22:48:45,151 TRACE ~ preparing statement
+13 Mar 2012 22:48:45,151 TRACE ~ binding parameter [1] as [VARCHAR] - admin
+13 Mar 2012 22:48:45,152 TRACE ~ Bound [3] parameters total
+13 Mar 2012 22:48:45,152 DEBUG ~ about to open ResultSet (open ResultSets: 0, globally: 0)
+13 Mar 2012 22:48:45,153 TRACE ~ processing result set
+13 Mar 2012 22:48:45,153 TRACE ~ done processing result set (0 rows)
+13 Mar 2012 22:48:45,154 DEBUG ~ about to close ResultSet (open ResultSets: 1, globally: 1)
+13 Mar 2012 22:48:45,155 DEBUG ~ about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+13 Mar 2012 22:48:45,156 TRACE ~ closing statement
+13 Mar 2012 22:48:45,157 TRACE ~ total objects hydrated: 0
+13 Mar 2012 22:48:45,157 DEBUG ~ initializing non-lazy collections
+13 Mar 2012 22:48:45,158 INFO  ~ admin is trying to login.
+13 Mar 2012 22:48:45,160 DEBUG ~ commit
+13 Mar 2012 22:48:45,160 TRACE ~ automatically flushing session
+13 Mar 2012 22:48:45,161 TRACE ~ before transaction completion
+13 Mar 2012 22:48:45,161 TRACE ~ before transaction completion
+13 Mar 2012 22:48:45,162 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:48:45,162 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:48:45,162 TRACE ~ after transaction completion
+13 Mar 2012 22:48:45,163 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:48:45,163 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:48:45,164 TRACE ~ after transaction completion
+13 Mar 2012 22:48:45,165 TRACE ~ closing session
+13 Mar 2012 22:48:45,165 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:48:45,188 DEBUG ~ opened session at timestamp: 13316969251
+13 Mar 2012 22:48:45,189 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:48:45,189 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:48:45,190 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:48:45,190 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:48:45,191 DEBUG ~ begin
+13 Mar 2012 22:48:45,191 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:48:45,192 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:48:45,192 DEBUG ~ disabling autocommit
+13 Mar 2012 22:48:45,192 TRACE ~ after transaction begin
+13 Mar 2012 22:48:45,199 DEBUG ~ commit
+13 Mar 2012 22:48:45,200 TRACE ~ automatically flushing session
+13 Mar 2012 22:48:45,200 TRACE ~ before transaction completion
+13 Mar 2012 22:48:45,201 TRACE ~ before transaction completion
+13 Mar 2012 22:48:45,201 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:48:45,206 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:48:45,206 TRACE ~ after transaction completion
+13 Mar 2012 22:48:45,207 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:48:45,207 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:48:45,208 TRACE ~ after transaction completion
+13 Mar 2012 22:48:45,210 TRACE ~ closing session
+13 Mar 2012 22:48:45,210 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:49:11,865 DEBUG ~ opened session at timestamp: 13316969518
+13 Mar 2012 22:49:11,866 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:49:11,867 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:49:11,867 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:49:11,868 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:49:11,868 DEBUG ~ begin
+13 Mar 2012 22:49:11,869 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:49:11,869 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:49:11,870 DEBUG ~ disabling autocommit
+13 Mar 2012 22:49:11,870 TRACE ~ after transaction begin
+13 Mar 2012 22:49:11,874 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:49:11,875 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:49:11,876 TRACE ~ find: from models.security.User where username = ?
+13 Mar 2012 22:49:11,877 TRACE ~ parameters: [admin]
+13 Mar 2012 22:49:11,878 TRACE ~ named parameters: {}
+13 Mar 2012 22:49:11,878 DEBUG ~ about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+13 Mar 2012 22:49:11,879 TRACE ~ preparing statement
+13 Mar 2012 22:49:11,880 TRACE ~ binding parameter [1] as [VARCHAR] - admin
+13 Mar 2012 22:49:11,881 TRACE ~ Bound [3] parameters total
+13 Mar 2012 22:49:11,881 DEBUG ~ about to open ResultSet (open ResultSets: 0, globally: 0)
+13 Mar 2012 22:49:11,882 TRACE ~ processing result set
+13 Mar 2012 22:49:11,882 TRACE ~ done processing result set (0 rows)
+13 Mar 2012 22:49:11,883 DEBUG ~ about to close ResultSet (open ResultSets: 1, globally: 1)
+13 Mar 2012 22:49:11,884 DEBUG ~ about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+13 Mar 2012 22:49:11,885 TRACE ~ closing statement
+13 Mar 2012 22:49:11,886 TRACE ~ total objects hydrated: 0
+13 Mar 2012 22:49:11,886 DEBUG ~ initializing non-lazy collections
+13 Mar 2012 22:49:11,887 INFO  ~ admin is trying to login.
+13 Mar 2012 22:49:11,889 DEBUG ~ commit
+13 Mar 2012 22:49:11,890 TRACE ~ automatically flushing session
+13 Mar 2012 22:49:11,890 TRACE ~ before transaction completion
+13 Mar 2012 22:49:11,891 TRACE ~ before transaction completion
+13 Mar 2012 22:49:11,892 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:49:11,892 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:49:11,893 TRACE ~ after transaction completion
+13 Mar 2012 22:49:11,893 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:49:11,894 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:49:11,895 TRACE ~ after transaction completion
+13 Mar 2012 22:49:11,895 TRACE ~ closing session
+13 Mar 2012 22:49:11,896 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:49:11,918 DEBUG ~ opened session at timestamp: 13316969519
+13 Mar 2012 22:49:11,922 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:49:11,922 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:49:11,923 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:49:11,923 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:49:11,924 DEBUG ~ begin
+13 Mar 2012 22:49:11,924 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:49:11,925 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:49:11,925 DEBUG ~ disabling autocommit
+13 Mar 2012 22:49:11,926 TRACE ~ after transaction begin
+13 Mar 2012 22:49:11,935 DEBUG ~ commit
+13 Mar 2012 22:49:11,935 TRACE ~ automatically flushing session
+13 Mar 2012 22:49:11,936 TRACE ~ before transaction completion
+13 Mar 2012 22:49:11,936 TRACE ~ before transaction completion
+13 Mar 2012 22:49:11,936 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:49:11,937 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:49:11,937 TRACE ~ after transaction completion
+13 Mar 2012 22:49:11,938 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:49:11,938 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:49:11,939 TRACE ~ after transaction completion
+13 Mar 2012 22:49:11,939 TRACE ~ closing session
+13 Mar 2012 22:49:11,940 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:51:26,437 DEBUG ~ opened session at timestamp: 13316970864
+13 Mar 2012 22:51:26,437 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:51:26,438 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:51:26,438 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:51:26,438 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:51:26,438 DEBUG ~ begin
+13 Mar 2012 22:51:26,439 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:51:26,439 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:51:26,440 DEBUG ~ disabling autocommit
+13 Mar 2012 22:51:26,440 TRACE ~ after transaction begin
+13 Mar 2012 22:51:26,445 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:51:26,446 TRACE ~ located HQL query plan in cache (from models.security.User where username = ?)
+13 Mar 2012 22:51:26,446 TRACE ~ find: from models.security.User where username = ?
+13 Mar 2012 22:51:26,447 TRACE ~ parameters: [admin]
+13 Mar 2012 22:51:26,447 TRACE ~ named parameters: {}
+13 Mar 2012 22:51:26,448 DEBUG ~ about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+13 Mar 2012 22:51:26,448 TRACE ~ preparing statement
+13 Mar 2012 22:51:26,449 TRACE ~ binding parameter [1] as [VARCHAR] - admin
+13 Mar 2012 22:51:26,450 TRACE ~ Bound [3] parameters total
+13 Mar 2012 22:51:26,450 DEBUG ~ about to open ResultSet (open ResultSets: 0, globally: 0)
+13 Mar 2012 22:51:26,450 TRACE ~ processing result set
+13 Mar 2012 22:51:26,451 TRACE ~ done processing result set (0 rows)
+13 Mar 2012 22:51:26,451 DEBUG ~ about to close ResultSet (open ResultSets: 1, globally: 1)
+13 Mar 2012 22:51:26,453 DEBUG ~ about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+13 Mar 2012 22:51:26,454 TRACE ~ closing statement
+13 Mar 2012 22:51:26,454 TRACE ~ total objects hydrated: 0
+13 Mar 2012 22:51:26,455 DEBUG ~ initializing non-lazy collections
+13 Mar 2012 22:51:33,782 INFO  ~ admin is trying to login.
+13 Mar 2012 22:52:34,759 DEBUG ~ commit
+13 Mar 2012 22:52:34,760 TRACE ~ automatically flushing session
+13 Mar 2012 22:52:34,761 TRACE ~ before transaction completion
+13 Mar 2012 22:52:34,761 TRACE ~ before transaction completion
+13 Mar 2012 22:52:34,762 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:52:34,762 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:52:34,763 TRACE ~ after transaction completion
+13 Mar 2012 22:52:34,763 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:52:34,764 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:52:34,764 TRACE ~ after transaction completion
+13 Mar 2012 22:52:34,765 TRACE ~ closing session
+13 Mar 2012 22:52:34,765 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:52:35,137 DEBUG ~ opened session at timestamp: 13316971551
+13 Mar 2012 22:52:35,138 TRACE ~ setting flush mode to: AUTO
+13 Mar 2012 22:52:35,139 TRACE ~ setting cache mode to: NORMAL
+13 Mar 2012 22:52:35,139 TRACE ~ setting flush mode to: COMMIT
+13 Mar 2012 22:52:35,140 DEBUG ~ Trying to set a property which is not supported on entity manager level
+13 Mar 2012 22:52:35,140 DEBUG ~ begin
+13 Mar 2012 22:52:35,141 DEBUG ~ opening JDBC connection
+13 Mar 2012 22:52:35,141 DEBUG ~ current autocommit status: true
+13 Mar 2012 22:52:35,142 DEBUG ~ disabling autocommit
+13 Mar 2012 22:52:35,142 TRACE ~ after transaction begin
+13 Mar 2012 22:52:35,152 DEBUG ~ commit
+13 Mar 2012 22:52:35,153 TRACE ~ automatically flushing session
+13 Mar 2012 22:52:35,153 TRACE ~ before transaction completion
+13 Mar 2012 22:52:35,154 TRACE ~ before transaction completion
+13 Mar 2012 22:52:35,154 DEBUG ~ re-enabling autocommit
+13 Mar 2012 22:52:35,155 DEBUG ~ committed JDBC Connection
+13 Mar 2012 22:52:35,155 TRACE ~ after transaction completion
+13 Mar 2012 22:52:35,156 DEBUG ~ aggressively releasing JDBC connection
+13 Mar 2012 22:52:35,156 DEBUG ~ releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+13 Mar 2012 22:52:35,157 TRACE ~ after transaction completion
+13 Mar 2012 22:52:35,157 TRACE ~ closing session
+13 Mar 2012 22:52:35,157 TRACE ~ connection already null in cleanup : no action
+13 Mar 2012 22:54:02,815 INFO  ~ closing
