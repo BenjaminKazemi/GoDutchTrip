@@ -1,14 +1,16 @@
 package controllers;
 
-import play.mvc.Controller;
+import models.security.User;
 import play.mvc.With;
+import util.controller.GenericController;
 
 @With(Secure.class)
 @Check("guest")
-public class Application extends Controller {
+public class Application extends GenericController {
 
     public static void index() {
-        render();
+        User currentUser = getCurrentUser();
+        render(currentUser);
     }
 
 }

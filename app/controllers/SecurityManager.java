@@ -21,4 +21,8 @@ public class SecurityManager extends Secure.Security {
             return user.isRole(profile);
         }
     }
+
+    public static User getCurrentUser() {
+        return User.find("byUsername", connected()).first();
+    }
 }
