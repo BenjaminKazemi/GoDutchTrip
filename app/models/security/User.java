@@ -1,6 +1,7 @@
 package models.security;
 
-import models.Person;
+import models.Traveller;
+import play.db.jpa.Model;
 import util.constant.RoleConstants;
 
 import javax.persistence.*;
@@ -9,11 +10,18 @@ import java.util.List;
 
 @Table(name = "USER")
 @Entity
-public class User extends Person {
+public class User extends Model {
     @Column(name = "USER_NAME", length = 20, unique = true, nullable = false)
     public String username;
-    @Column(name = "PASSWORD", length = 50, nullable = false)
+
+    @Column(name = "PASSWORD", length = 100, nullable = false)
     public String password;
+
+    @Column(name = "EMAIL", length = 100, nullable = false)
+    public String email;
+
+    @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.REMOVE)
+    public Traveller traveller;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLE",
@@ -24,6 +32,8 @@ public class User extends Person {
 
     @Transient
     private Boolean admin = null;
+    @Transient
+    private Boolean guest = null;
 
     public boolean isAdmin() {
         if (admin == null) {
@@ -37,8 +47,6 @@ public class User extends Person {
         }
         return admin;
     }
-
-    private Boolean guest = null;
 
     public boolean isGuest() {
         if (isAdmin()) {

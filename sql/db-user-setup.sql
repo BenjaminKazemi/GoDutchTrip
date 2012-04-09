@@ -1,3 +1,8 @@
+GRANT USAGE ON *.* TO 'godutchtrip'@'localhost';
+DROP USER godutchtrip@localhost;
+
+DROP DATABASE IF EXISTS godutchtrip;
+
 CREATE DATABASE godutchtrip DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 
 CREATE USER godutchtrip@localhost IDENTIFIED BY 'hGMyVZSC5xdTSQy8';

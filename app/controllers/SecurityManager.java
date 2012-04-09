@@ -3,26 +3,37 @@ package controllers;
 import models.security.User;
 import play.Logger;
 import util.constant.RoleConstants;
+import util.security.Encryptor;
 
 public class SecurityManager extends Secure.Security {
+    private static User currentUser;
+
     static boolean authenticate(String username, String password) {
-        User user = User.find("byUsername", username).first();
+        currentUser = User.find("byUsername", username).first();
         Logger.info("%s is trying to login.", username);
-        return user != null && user.password.equals(password);
+        return currentUser != null && currentUser.password.equals(Encryptor.SHA_256.encrypt(password));
     }
 
     static boolean check(String profile) {
-        User user = User.find("byUsername", connected()).first();
-        if (RoleConstants.ADMIN.equals(profile)) {
-            return user.isAdmin();
-        } else if (RoleConstants.GUEST.equals(profile)) {
-            return user.isGuest();
-        } else {
-            return user.isRole(profile);
+        if (currentUser == null) {
+            currentUser = User.find("byUsername", connected()).first();
         }
+        if (currentUser != null) {
+            if (RoleConstants.ADMIN.equals(profile)) {
+                return currentUser.isAdmin();
+            } else if (RoleConstants.GUEST.equals(profile)) {
+                return currentUser.isGuest();
+            } else {
+                return currentUser.isRole(profile);
+            }
+        }
+        return false;
     }
 
     public static User getCurrentUser() {
-        return User.find("byUsername", connected()).first();
+        if (currentUser == null) {
+            currentUser = User.find("byUsername", connected()).first();
+        }
+        return currentUser;
     }
 }
