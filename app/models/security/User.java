@@ -75,4 +75,9 @@ public class User extends Model {
         }
         return false;
     }
+
+    public static User fetchUserByUsername(String username) {
+//        return User.find("SELECT u FROM User u JOIN FETCH u.traveller t JOIN FETCH t.myOwnTrips JOIN FETCH t.trips WHERE u = ?1", username).first();
+        return User.find("SELECT u FROM User u JOIN FETCH u.traveller t JOIN FETCH t.myOwnTrips WHERE u.username = ?1", username).first();
+    }
 }

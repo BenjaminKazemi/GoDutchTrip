@@ -6,18 +6,17 @@ import util.constant.RoleConstants;
 import util.security.Encryptor;
 
 public class SecurityManager extends Secure.Security {
-    private static User currentUser;
+//    private static User currentUser;
 
     static boolean authenticate(String username, String password) {
-        currentUser = User.find("byUsername", username).first();
+//        User currentUser = getCurrentUser();
+        User currentUser = User.find("byUsername", username).first();
         Logger.info("%s is trying to login.", username);
         return currentUser != null && currentUser.password.equals(Encryptor.SHA_256.encrypt(password));
     }
 
     static boolean check(String profile) {
-        if (currentUser == null) {
-            currentUser = User.find("byUsername", connected()).first();
-        }
+        User currentUser = getCurrentUser();
         if (currentUser != null) {
             if (RoleConstants.ADMIN.equals(profile)) {
                 return currentUser.isAdmin();
@@ -31,9 +30,11 @@ public class SecurityManager extends Secure.Security {
     }
 
     public static User getCurrentUser() {
-        if (currentUser == null) {
-            currentUser = User.find("byUsername", connected()).first();
-        }
-        return currentUser;
+//        if (currentUser == null) {
+//            currentUser = User.find("byUsername", connected()).first();
+//            currentUser = User.find("SELECT u FROM User u FETCH JOIN u.traveller t FETCH t.myOwnTrips FETCH JOIN t.trips WHERE u = ?1", connected()).first();
+//        }
+//        return currentUser;
+        return User.fetchUserByUsername(connected());
     }
 }

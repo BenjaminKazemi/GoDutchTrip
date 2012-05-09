@@ -17,5 +17,13 @@ GET     /public/                                staticDir:public
 # Import secure routes
 *       /                                       module:secure
 
+# Trips
+GET     /trips/create                           Trips.blank
+GET     /trips/show/{tripId}                    Trips.show
+GET     /trips/edit/{tripId}                    Trips.edit
+POST    /trips/create                           Trips.create
+POST    /trips/update/{tripId}                  Trips.update
+GET     /trips/delete/{tripId}                  Trips.delete
+
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+# *       /{controller}/{action}                  {controller}.{action}

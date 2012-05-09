@@ -2,6 +2,7 @@ package controllers;
 
 import models.Trip;
 import models.security.User;
+import play.mvc.Controller;
 import play.mvc.With;
 import util.controller.GenericController;
 
