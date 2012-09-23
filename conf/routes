@@ -5,25 +5,29 @@
 # Home page
 GET     /                                       Application.index
 
+# Bowls
+POST    /bowls                                  BowlsController.create
+GET     /bowls/all                              BowlsController.list
+GET     /bowls/{id}                             BowlsController.read
+PUT     /bowls/{id}                             BowlsController.update
+DELETE  /bowls/{id}                             BowlsController.delete
+
+PUT     /bowls/{id}/expense                     BowlsController.addExpense
+PUT     /bowls/{id}/participant/{pId}           BowlsController.addParticipant
+
+# Participants
+POST    /participants                           ParticipantsController.create
+GET     /participants/all                       ParticipantsController.list
+GET     /participants/{id}                      ParticipantsController.read
+PUT     /participants/{id}                      ParticipantsController.update
+DELETE  /participants/{id}                      ParticipantsController.delete
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
-
-# Import CRUD routes
-*       /admin                                  module:crud
-
-# Import secure routes
-*       /                                       module:secure
-
-# Trips
-GET     /trips/create                           Trips.blank
-GET     /trips/show/{tripId}                    Trips.show
-GET     /trips/edit/{tripId}                    Trips.edit
-POST    /trips/create                           Trips.create
-POST    /trips/update/{tripId}                  Trips.update
-GET     /trips/delete/{tripId}                  Trips.delete
 
 # Catch all
 # *       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<testsuite failures="0" time="0.822" errors="0" skipped="0" tests="8" name="BowlsControllerTest">
+  <testcase classname="BowlsControllerTest" name="list" time="0.327">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="delete" time="0.098">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="read" time="0.071">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="create" time="0.029">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="update" time="0.111">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="addParticipant" time="0.001">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="addExpense" time="0.183">
+      </testcase>
+  <testcase classname="BowlsControllerTest" name="test" time="0.002">
+      </testcase>
+</testsuite>

@@ -3,124 +3,14 @@
 <html>
 <head>
     <title>#{get 'title' /}</title>
-    <meta charset="${_response_encoding}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.min.css'}">
-    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-responsive.min.css'}">
-    <link rel="stylesheet" media="screen" href="@{'/public/jquery-ui-1.8.19.custom/css/ui-lightness/jquery-ui-1.8.19.custom.css'}">
 #{get 'moreStyles' /}
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-    <script src="@{'/public/javascripts/jquery/jquery-1.7.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-    <script src="@{'/public/jquery-ui-1.8.19.custom/js/jquery-ui-1.8.19.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-    <script src="@{'/public/javascripts/bootstrap/bootstrap.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-    <script src="@{'/public/javascripts/bootstrap/bootstrap-dropdown.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-    <script src="@{'/public/javascripts/main.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 #{get 'moreScripts' /}
 
 </head>
 
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="/">Go Dutch Trip</a>
-
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-
-                <ul class="nav pull-right">
-                    <li id="fat-menu" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Logged in as ${currentUser.username}<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">Options</a></li>
-                            <li><a href="#">Travellers</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@{Secure.logout()}">Sign Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Trips</li>
-                    <li class="${(create!=null && create==true) ? 'active':''}">
-                        <a href="@{Trips.blank()}" class="create-trip">Create New Trip</a>
-                    </li>
-                #{list items:currentUser.traveller.myOwnTrips, as:'myTrip' }
-                    <li class="${(trip!=null && trip.id == myTrip.id) ? 'active':''}">
-                        <a onclick="return confirm('Delete your trip: ${myTrip.name}?')" href="@{Trips.delete(myTrip.id)}" class="close">&times;</a>
-                        <a href="@{Trips.show(myTrip.id)}">${myTrip.name}</a>
-                    </li>
-                #{/list}
-                    <li class="nav-header">Other Trips</li>
-                #{list items:currentUser.traveller.trips, as:'otherTrip' }
-                    <li>
-                        <a href="@{Trips.show(otherTrip.id)}">${otherTrip.name}</a>
-                        <i class="icon-remove"></i>
-                    </li>
-                #{/list}
-                *{<li class="active"><a href="#">Link</a></li>}*
-                *{<li><a href="#">Link</a></li>}*
-                *{<li><a href="#">Link</a></li>}*
-                *{<li><a href="#">Link</a></li>}*
-                *{
-                    <li class="nav-header">Sidebar</li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li class="nav-header">Sidebar</li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-}*
-                </ul>
-            </div>
-            <!--/.well -->
-        </div>
-
-        <!--/span-->
-        <div class="span9">
-
-        #{doLayout /}
-
-        </div>
-        <!--/span-->
-    </div>
-    <!--/row-->
-
-    <hr>
-
-    <footer>
-        <p>&copy; GoDutchTrip 2012</p>
-    </footer>
-
-</div>
-<!--/.fluid-container-->
 
 </body>
 </html>
