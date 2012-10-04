@@ -38,6 +38,10 @@ public class GenericFunctionalTest extends FunctionalTest {
         return  PUT( newRequest(), url + "?" + obj.toUrlParams(obj.getClass().getSimpleName().toLowerCase()), "", "" );
     }
 
+    public static Http.Response put( String url ) throws UnsupportedEncodingException, IllegalAccessException {
+        return  PUT( newRequest(), url, "", "" );
+    }
+
     public Http.Response delete(String url) {
         return DELETE( newRequest(), url );
     }

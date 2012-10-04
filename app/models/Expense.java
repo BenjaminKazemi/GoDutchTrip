@@ -1,5 +1,6 @@
 package models;
 
+import com.google.gson.Gson;
 import play.data.binding.As;
 import util.annotation.IgnoreGSon;
 
@@ -44,4 +45,9 @@ public class Expense extends GenericModel {
         this.cost = cost;
         this.date = date;
     }
+
+    public static Expense fromJson(String json) {
+        return new Gson().fromJson(json, Expense.class);
+    }
+
 }

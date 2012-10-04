@@ -12,8 +12,15 @@ GET     /bowls/{id}                             BowlsController.read
 PUT     /bowls/{id}                             BowlsController.update
 DELETE  /bowls/{id}                             BowlsController.delete
 
-PUT     /bowls/{id}/expense                     BowlsController.addExpense
-PUT     /bowls/{id}/participant/{pId}           BowlsController.addParticipant
+POST    /bowls/{id}/expenses                    BowlsController.addExpense
+PUT     /bowls/{id}/participants/{pId}          BowlsController.addParticipant
+DELETE  /bowls/{id}/participants/{pId}          BowlsController.deleteParticipant
+
+# Expenses
+DELETE  /expenses/{id}                          ExpensesController.delete
+PUT     /expenses/{id}                          ExpensesController.update
+PUT     /expenses/{id}/participants/{pId}       ExpensesController.addParticipant
+DELETE  /expenses/{id}/participants/{pId}       ExpensesController.deleteParticipant
 
 # Participants
 POST    /participants                           ParticipantsController.create

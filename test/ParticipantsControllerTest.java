@@ -93,7 +93,4 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
         assertEquals( 10, bowls.size() );
     }
 
-    @Test
-    public void addParticipant() throws IllegalAccessException, UnsupportedEncodingException {
-    }
 }

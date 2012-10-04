@@ -82,6 +82,16 @@ public class BowlsController extends GenericController {
         renderJSON(bowl);
     }
 
+    public static void deleteParticipant( Long id, Long pId ) {
+        Bowl bowl = Bowl.findById( id );
+        Participant participant = Participant.findById( pId );
+
+        bowl.participants.remove( participant );
+        bowl.save();
+
+        renderJSON(bowl);
+    }
+
     public static void addExpense( Long id, Expense expense ) {
         Bowl bowl = Bowl.findById( id );
 
