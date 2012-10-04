@@ -69,11 +69,11 @@ public class BowlsController extends GenericController {
     public static void list() {
         List<Bowl> bowls = Bowl.findAll();
 
-        renderJSON( bowls );
+        renderJSON(bowls);
     }
 
     public static void addParticipant( Long id, Long pId ) {
-        Bowl bowl = Bowl.findById( id );
+        Bowl bowl = Bowl.findById(id);
         Participant participant = Participant.findById( pId );
 
         bowl.participants.add( participant );
@@ -83,10 +83,10 @@ public class BowlsController extends GenericController {
     }
 
     public static void deleteParticipant( Long id, Long pId ) {
-        Bowl bowl = Bowl.findById( id );
+        Bowl bowl = Bowl.findById(id);
         Participant participant = Participant.findById( pId );
 
-        bowl.participants.remove( participant );
+        bowl.participants.remove(participant);
         bowl.save();
 
         renderJSON(bowl);
@@ -102,4 +102,5 @@ public class BowlsController extends GenericController {
 
         renderJSON(bowl);
     }
+
 }

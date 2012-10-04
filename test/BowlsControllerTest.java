@@ -65,7 +65,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
         Bowl returnedBowl = Bowl.fromJson(getContent(post("/bowls", bowl)));
         bowl.title += " UPDATED";
         bowl.description += " UPDATED";
-        Date d = bowl.date = new Date();
+        bowl.date = new Date();
 
         returnedBowl = Bowl.fromJson( getContent( put(Router.reverse( "BowlsController.update", ImmutableMap.of("id", (Object) returnedBowl.id ) ).url, bowl) ) );
         assertNotNull( returnedBowl );

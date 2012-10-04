@@ -5,22 +5,24 @@
 # Home page
 GET     /                                       Application.index
 
+
 # Bowls
 POST    /bowls                                  BowlsController.create
 GET     /bowls/all                              BowlsController.list
 GET     /bowls/{id}                             BowlsController.read
 PUT     /bowls/{id}                             BowlsController.update
 DELETE  /bowls/{id}                             BowlsController.delete
-
 POST    /bowls/{id}/expenses                    BowlsController.addExpense
 PUT     /bowls/{id}/participants/{pId}          BowlsController.addParticipant
 DELETE  /bowls/{id}/participants/{pId}          BowlsController.deleteParticipant
+
 
 # Expenses
 DELETE  /expenses/{id}                          ExpensesController.delete
 PUT     /expenses/{id}                          ExpensesController.update
 PUT     /expenses/{id}/participants/{pId}       ExpensesController.addParticipant
 DELETE  /expenses/{id}/participants/{pId}       ExpensesController.deleteParticipant
+
 
 # Participants
 POST    /participants                           ParticipantsController.create
