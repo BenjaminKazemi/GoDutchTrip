@@ -15,6 +15,17 @@ import util.controller.GenericController;
 
 public class ExpensesController extends GenericController {
 
+    public static void create( Long id, Expense expense ) {
+        Bowl bowl = Bowl.findById( id );
+
+        expense.bowl = bowl;
+        expense.save();
+        bowl.expenses.add(expense);
+        bowl.save();
+
+        renderJSON(bowl);
+    }
+
     public static void delete( Long id ) {
         Expense expense = Expense.findById( id );
 

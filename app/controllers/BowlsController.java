@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Bowl;
-import models.Expense;
 import models.Participant;
 import util.controller.GenericController;
 
@@ -87,17 +86,6 @@ public class BowlsController extends GenericController {
         Participant participant = Participant.findById( pId );
 
         bowl.participants.remove(participant);
-        bowl.save();
-
-        renderJSON(bowl);
-    }
-
-    public static void addExpense( Long id, Expense expense ) {
-        Bowl bowl = Bowl.findById( id );
-
-        expense.bowl = bowl;
-        expense.save();
-        bowl.expenses.add(expense);
         bowl.save();
 
         renderJSON(bowl);

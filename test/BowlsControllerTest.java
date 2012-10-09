@@ -32,7 +32,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
     @Test
     public void create() throws IllegalAccessException, UnsupportedEncodingException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        Http.Response response = post("/bowls", bowl);
+        Http.Response response = post(Router.reverse("BowlsController.create").url, bowl);
 
         assertEquals( 200, (Object) response.status);
 
@@ -47,7 +47,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
     @Test
     public void read() throws UnsupportedEncodingException, IllegalAccessException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        Http.Response response = post("/bowls", bowl);
+        Http.Response response = post(Router.reverse("BowlsController.create").url, bowl);
 
         Bowl returnedBowl = Bowl.fromJson( getContent(response) );
 
@@ -62,7 +62,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
     @Test
     public void update() throws UnsupportedEncodingException, IllegalAccessException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        Bowl returnedBowl = Bowl.fromJson(getContent(post("/bowls", bowl)));
+        Bowl returnedBowl = Bowl.fromJson(getContent(post(Router.reverse("BowlsController.create").url, bowl)));
         bowl.title += " UPDATED";
         bowl.description += " UPDATED";
         bowl.date = new Date();
@@ -84,7 +84,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
     @Test
     public void delete() throws IllegalAccessException, UnsupportedEncodingException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        bowl = Bowl.fromJson( getContent( post( "/bowls", bowl ) ) );
+        bowl = Bowl.fromJson( getContent( post( Router.reverse("BowlsController.create").url, bowl ) ) );
 
         Http.Response response = delete(Router.reverse("BowlsController.delete", ImmutableMap.of("id", (Object) bowl.id)).url);
         assertEquals(200, (Object)response.status );
@@ -99,7 +99,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
         assertEquals( 0, bowls.size() );
 
         for( int i = 0 ; i< 10; i++ ) {
-            Bowl.fromJson( getContent( post( "/bowls", new Bowl( "chicago Trip " + i, "description " + i, new Date() ) ) ) );
+            Bowl.fromJson( getContent( post( Router.reverse("BowlsController.create").url, new Bowl( "chicago Trip " + i, "description " + i, new Date() ) ) ) );
         }
 
         bowls = Bowl.listFromJson(getContent(get(Router.reverse("BowlsController.list").url)));
@@ -109,10 +109,10 @@ public class BowlsControllerTest extends GenericFunctionalTest {
     @Test
     public void addParticipant() throws IllegalAccessException, UnsupportedEncodingException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        bowl = Bowl.fromJson( getContent( post("/bowls", bowl) ) );
+        bowl = Bowl.fromJson( getContent( post(Router.reverse("BowlsController.create").url, bowl) ) );
 
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        participant = Participant.fromJson( getContent( post("/participants", participant) ) );
+        participant = Participant.fromJson( getContent( post(Router.reverse("ParticipantsController.create").url, participant) ) );
 
         bowl = Bowl.fromJson( getContent( put(Router.reverse("BowlsController.addParticipant", ImmutableMap.of("id", (Object) bowl.id, "pId", participant.id)).url) ) );
         assertEquals( 1, bowl.participants.size() );
@@ -121,7 +121,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
         assertEquals( bowl.participants.get(0).username, participant.username );
 
         participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        participant = Participant.fromJson( getContent( post("/participants", participant) ) );
+        participant = Participant.fromJson( getContent( post(Router.reverse("ParticipantsController.create").url, participant) ) );
 
         bowl = Bowl.fromJson( getContent( put(Router.reverse("BowlsController.addParticipant", ImmutableMap.of("id", (Object) bowl.id, "pId", participant.id)).url) ) );
         assertEquals( 2, bowl.participants.size() );
@@ -141,13 +141,13 @@ public class BowlsControllerTest extends GenericFunctionalTest {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
 
-        bowl = Bowl.fromJson( getContent( post("/bowls", bowl) ) );
+        bowl = Bowl.fromJson( getContent( post(Router.reverse("BowlsController.create").url, bowl) ) );
 
-        participant = Participant.fromJson( getContent( post( "/participants", participant ) ) );
+        participant = Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, participant ) ) );
         bowl = Bowl.fromJson( getContent( put(Router.reverse("BowlsController.addParticipant", ImmutableMap.of("id", (Object) bowl.id, "pId", participant.id)).url) ) );
         assertEquals( 1, bowl.participants.size() );
 
-        participant = Participant.fromJson( getContent( post( "/participants", participant ) ) );
+        participant = Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, participant ) ) );
         bowl = Bowl.fromJson( getContent( put(Router.reverse("BowlsController.addParticipant", ImmutableMap.of("id", (Object) bowl.id, "pId", participant.id)).url) ) );
         assertEquals( 2, bowl.participants.size() );
 
@@ -162,48 +162,6 @@ public class BowlsControllerTest extends GenericFunctionalTest {
 
         bowl = Bowl.fromJson( getContent( get(Router.reverse("BowlsController.read", ImmutableMap.of("id", (Object) bowl.id)).url) ) );
         assertEquals( 0, bowl.participants.size() );
-    }
-
-    @Test
-    public void addExpense() throws IllegalAccessException, UnsupportedEncodingException {
-        Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
-        bowl = Bowl.fromJson( getContent( post("/bowls", bowl) ) );
-        Expense expense = new Expense( "Description", 215.0F, new Date() );
-
-        bowl = Bowl.fromJson( getContent( post(Router.reverse("BowlsController.addExpense", ImmutableMap.of("id", (Object) bowl.id)).url, expense) ) );
-        assertEquals( 1, bowl.expenses.size() );
-        assertEquals( expense.description, bowl.expenses.get(0).description );
-        assertEquals( expense.cost, bowl.expenses.get(0).cost);
-        assertEquals(expense.date.toString(), bowl.expenses.get(0).date.toString());
-
-        bowl = Bowl.fromJson( getContent( get(Router.reverse("BowlsController.read", ImmutableMap.of("id", (Object) bowl.id)).url) ) );
-        assertEquals( 1, bowl.expenses.size() );
-        assertEquals( expense.description, bowl.expenses.get(0).description );
-        assertEquals( expense.cost, bowl.expenses.get(0).cost);
-        assertEquals( expense.date.toString(), bowl.expenses.get(0).date.toString() );
-
-        bowl = Bowl.fromJson( getContent( post(Router.reverse("BowlsController.addExpense", ImmutableMap.of("id", (Object) bowl.id)).url, expense) ) );
-        assertEquals( 2, bowl.expenses.size() );
-
-        assertEquals( expense.description, bowl.expenses.get(0).description );
-        assertEquals( expense.cost, bowl.expenses.get(0).cost);
-        assertEquals( expense.date.toString(), bowl.expenses.get(0).date.toString() );
-
-        assertEquals( expense.description, bowl.expenses.get(1).description );
-        assertEquals( expense.cost, bowl.expenses.get(1).cost);
-        assertEquals( expense.date.toString(), bowl.expenses.get(1).date.toString() );
-
-        bowl = Bowl.fromJson( getContent( get(Router.reverse("BowlsController.read", ImmutableMap.of("id", (Object) bowl.id)).url) ) );
-        assertEquals( 2, bowl.expenses.size() );
-
-        assertEquals( expense.description, bowl.expenses.get(0).description );
-        assertEquals( expense.cost, bowl.expenses.get(0).cost);
-        assertEquals( expense.date.toString(), bowl.expenses.get(0).date.toString() );
-
-        assertEquals( expense.description, bowl.expenses.get(1).description );
-        assertEquals( expense.cost, bowl.expenses.get(1).cost);
-        assertEquals( expense.date.toString(), bowl.expenses.get(1).date.toString() );
-
     }
 
 }

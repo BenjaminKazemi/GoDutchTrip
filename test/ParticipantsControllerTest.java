@@ -19,7 +19,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void create() throws IllegalAccessException, UnsupportedEncodingException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Http.Response response = post("/participants", participant);
+        Http.Response response = post(Router.reverse("ParticipantsController.create").url, participant);
 
         assertEquals( 200, (Object) response.status);
 
@@ -34,7 +34,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void read() throws UnsupportedEncodingException, IllegalAccessException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Http.Response response = post("/participants", participant);
+        Http.Response response = post(Router.reverse("ParticipantsController.create").url, participant);
 
         Participant returnedParticipant = Participant.fromJson( getContent(response) );
 
@@ -49,7 +49,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void update() throws UnsupportedEncodingException, IllegalAccessException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Participant returnedBowl = Participant.fromJson(getContent(post("/participants", participant)));
+        Participant returnedBowl = Participant.fromJson(getContent(post(Router.reverse("ParticipantsController.create").url, participant)));
         participant.username += " UPDATED";
         participant.email += " UPDATED";
         participant.fullName += " UPDATED";
@@ -71,7 +71,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void delete() throws IllegalAccessException, UnsupportedEncodingException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        participant = Participant.fromJson( getContent( post( "/participants", participant ) ) );
+        participant = Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, participant ) ) );
 
         Http.Response response = delete(Router.reverse("ParticipantsController.delete", ImmutableMap.of("id", (Object) participant.id)).url);
         assertEquals(200, (Object)response.status );
@@ -86,7 +86,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
         assertEquals( 0, bowls.size() );
 
         for( int i = 0 ; i< 10; i++ ) {
-            Participant.fromJson( getContent( post( "/participants", new Participant( "Username" + i, "Password" + i, "EMail" + i, "Full Name" + i ) ) ) );
+            Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, new Participant( "Username" + i, "Password" + i, "EMail" + i, "Full Name" + i ) ) ) );
         }
 
         bowls = Participant.listFromJson(getContent(get(Router.reverse("ParticipantsController.list").url)));
