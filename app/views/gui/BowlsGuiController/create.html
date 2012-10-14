@@ -21,28 +21,6 @@
     <button type="submit" class="btn btn-primary" onclick="return submitForm('createBowl', successFunc)">Save</button>
 </form>
 
-<br/>
-<br/>
-Test --------
-<br/>
-<form id="createBowl" class="form-horizontal" method="POST" action="@{services.BowlsController.create()}">
-    <h3>New Bowl</h3>
-    <br/>
-        <input type="text" class="input-large" id="bowl.title2" name="bowl.title" placeholder="Title" />
-    <br/>
-    <br/>
-        <textarea class="input-large" id="bowl.description2" name="bowl.description" title="description"></textarea>
-    <br/>
-    <br/>
-        <input type="text" class="input-small" id="bowl.date2" name="bowl.date" placeholder="date" />
-        <input type="hidden" class="input-small" id="participants1" name="participants[0]" value="0" />
-        <input type="hidden" class="input-small" id="participants2" name="participants[1]" value="1" />
-    <br/>
-    <br/>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-
 <script type="text/javascript">
     function successFunc(data, textStatus, jqXHR) {
         if(jqXHR.status == 200 ) {

@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div class="container-fluid">
+
+    <a href="@{gui.BowlsGuiController.create()}">New Bowl</a>
+    <br/>
+    <a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+    <br/>
+
+    <a href="@{gui.ParticipantsGuiController.create()}">New Participant</a>
+    <br/>
+    <a href="@{gui.ParticipantsGuiController.list()}">Participants</a>
+    <br/>
+
+</div>

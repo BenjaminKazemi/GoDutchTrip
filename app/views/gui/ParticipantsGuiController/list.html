@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'List of Participants' /}
+
+<a href="@{gui.ParticipantsGuiController.create()}">New Participant</a>
+<br/>
+
+#{list items:participants, as:"participant"}
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <a href="@{gui.ParticipantsGuiController.show(participant.id)}"> ${participant.username} </a>
+        </td>
+        <td>
+            <a href="@{gui.ParticipantsGuiController.show(participant.id)}"> ${participant.fullName} </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+#{/list}

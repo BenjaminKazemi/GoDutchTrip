@@ -1,9 +1,15 @@
 function submitForm(formId, callbackFunc) {
     form = $("#"+formId);
+    url = form.attr('action');
     dataString = form.serialize();
+
+    if( form.attr('method').toUpperCase() == "GET" ) {
+        url += "?" + dataString;
+        dataString = "";
+    }
     $.ajax({
         type: form.attr('method'),
-        url: form.attr('action'),
+        url: url,
         data: dataString,
         error: function(data, textStatus, jqXHR) {
             if(callbackFunc != undefined ) {

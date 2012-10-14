@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Participant' /}
+
+<a href="@{gui.ParticipantsGuiController.create()}">New Participant</a>
+<br/>
+<a href="@{gui.ParticipantsGuiController.list()}">Participants</a>
+<br/>
+
+<table>
+    <tbody>
+    <tr>
+        <td> Username: ${participant.username} </td>
+        <td> Full Name: ${participant.fullName} </td>
+        <td> EMail: ${participant.email} </td>
+        <td> Bowls#: --- </td>
+    </tr>
+    </tbody>
+</table>

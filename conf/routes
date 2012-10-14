@@ -4,10 +4,15 @@
 
 # Home page
 GET     /                                                Application.index
+GET     /app                                             Application.app
 
 GET     /app/bowls/new                                   gui.BowlsGuiController.create
 GET     /app/bowls/list                                  gui.BowlsGuiController.list
 GET     /app/bowls/{id}                                  gui.BowlsGuiController.show
+
+GET     /app/participants/new                            gui.ParticipantsGuiController.create
+GET     /app/participants/list                           gui.ParticipantsGuiController.list
+GET     /app/participants/{id}                           gui.ParticipantsGuiController.show
 
 
 # Bowls
