@@ -8,4 +8,7 @@ public class Application extends GenericController {
         renderHtml("ok");
     }
 
+    public static void newBowl() {
+        render();
+    }
 }

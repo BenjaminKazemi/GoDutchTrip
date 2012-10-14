@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Bowl' /}
+
+<a href="@{gui.BowlsGuiController.create()}">New Bowl</a>
+<br/>
+<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<br/>
+
+<table>
+    <tbody>
+    <tr>
+        <td> Title: ${bowl.title} </td>
+        <td> Description: ${bowl.description} </td>
+        <td> Date: ${bowl.date} </td>
+        <td> Participants#: ${bowl.participants?.size()} </td>
+    </tr>
+    </tbody>
+</table>

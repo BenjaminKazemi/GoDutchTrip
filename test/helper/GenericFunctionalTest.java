@@ -5,7 +5,10 @@ import org.junit.Test;
 import play.mvc.Http;
 import play.test.FunctionalTest;
 
+import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,10 +18,28 @@ import java.io.UnsupportedEncodingException;
  * To change this template use File | Settings | File Templates.
  */
 
-public class GenericFunctionalTest extends FunctionalTest {
+public abstract class GenericFunctionalTest extends FunctionalTest {
+    private static final String CONTENT_TYPE_URL = "application/x-www-form-urlencoded";
+    public static final String BowlsController_create = "services.BowlsController.create";
+    public static final String BowlsController_list = "services.BowlsController.list";
+    public static final String BowlsController_read = "services.BowlsController.read";
+    public static final String BowlsController_update = "services.BowlsController.update";
+    public static final String BowlsController_delete = "services.BowlsController.delete";
+    public static final String BowlsController_addParticipant = "services.BowlsController.addParticipant";
+    public static final String BowlsController_deleteParticipant = "services.BowlsController.deleteParticipant";
 
-    @Test
-    public void test() {}
+    public static final String ParticipantsController_create = "services.ParticipantsController.create";
+    public static final String ParticipantsController_list = "services.ParticipantsController.list";
+    public static final String ParticipantsController_read = "services.ParticipantsController.read";
+    public static final String ParticipantsController_update = "services.ParticipantsController.update";
+    public static final String ParticipantsController_delete = "services.ParticipantsController.delete";
+
+    public static final String ExpensesController_create = "services.ExpensesController.create";
+//    public static final String ExpensesController_read = "services.ExpensesController.read";
+    public static final String ExpensesController_update = "services.ExpensesController.update";
+    public static final String ExpensesController_delete = "services.ExpensesController.delete";
+    public static final String ExpensesController_addParticipant = "services.ExpensesController.addParticipant";
+    public static final String ExpensesController_deleteParticipant = "services.ExpensesController.deleteParticipant";
 
     public static Http.Request newRequest() {
         Http.Request request = FunctionalTest.newRequest();
@@ -30,12 +51,34 @@ public class GenericFunctionalTest extends FunctionalTest {
         return GET( newRequest(), url );
     }
 
-    public static Http.Response post( String url, GenericModel obj ) throws UnsupportedEncodingException, IllegalAccessException {
-        return POST( newRequest(), url + "?" + obj.toUrlParams(obj.getClass().getSimpleName().toLowerCase()) );
+    public static Http.Response post( String url, Object...objects ) throws UnsupportedEncodingException, IllegalAccessException {
+//        return POST( newRequest(), url + "?" + obj.toParams(obj.getClass().getSimpleName().toLowerCase()) );
+        String body = "";
+        for( int i=0; i < objects.length; ) {
+            String name = objects[i++].toString();
+            Object obj = objects[i++];
+            if( obj instanceof GenericModel ) {
+                body += ((GenericModel)obj).toParams( obj.getClass().getSimpleName().toLowerCase() );
+            } else if( obj instanceof List ) {
+                List list = (List)obj;
+                int j = 0;
+                for( Object item : list ) {
+                    body += name + "[" + j++ + "]=" + URLEncoder.encode( item.toString(), Charset.defaultCharset().toString() );
+                    if( j < list.size() ) {
+                        body += "&";
+                    }
+                }
+            }
+            if( i < objects.length ) {
+                body += "&";
+            }
+        }
+        return POST( newRequest(), url, CONTENT_TYPE_URL, body );
     }
 
     public static Http.Response put( String url, GenericModel obj ) throws UnsupportedEncodingException, IllegalAccessException {
-        return  PUT( newRequest(), url + "?" + obj.toUrlParams(obj.getClass().getSimpleName().toLowerCase()), "", "" );
+//        return  PUT( newRequest(), url + "?" + obj.toParams(obj.getClass().getSimpleName().toLowerCase()), "", "" );
+        return  PUT( newRequest(), url, CONTENT_TYPE_URL, obj.toParams(obj.getClass().getSimpleName().toLowerCase()) );
     }
 
     public static Http.Response put( String url ) throws UnsupportedEncodingException, IllegalAccessException {

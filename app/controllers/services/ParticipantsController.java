@@ -1,4 +1,4 @@
-package controllers;
+package controllers.services;
 
 import models.Participant;
 import util.controller.GenericController;

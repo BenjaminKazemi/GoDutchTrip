@@ -28,7 +28,7 @@ public abstract class GenericModel extends Model {
         return new GsonBuilder().setExclusionStrategies(new MyExclusionStrategy()).create().toJson( this );
     }
 
-    public String toUrlParams( String objName) throws IllegalAccessException, UnsupportedEncodingException {
+    public String toParams(String objName) throws IllegalAccessException, UnsupportedEncodingException {
         String params = "";
         Iterator<Field> fields = ImmutableList.copyOf( getClass().getFields() ).iterator();
         String klassName = objName;

@@ -3,14 +3,20 @@
 <html>
 <head>
     <title>#{get 'title' /}</title>
-#{get 'moreStyles' /}
+    <link rel="stylesheet" href="@{'/public/bootstrap-2.1.1/css/bootstrap.min.css'}">
+    #{get 'moreStyles' /}
+
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-#{get 'moreScripts' /}
+    <script type="text/javascript" src="@{'/public/jquery-1.7.1/jquery-1.7.1.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/bootstrap-2.1.1/js/bootstrap.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/main.js'}"></script>
+    #{get 'moreScripts' /}
 
 </head>
 
 <body>
 
+    #{doLayout /}
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package controllers;
+package controllers.services;
 
 import models.Bowl;
 import models.Expense;

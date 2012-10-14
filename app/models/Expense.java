@@ -21,7 +21,7 @@ import java.util.List;
 public class Expense extends GenericModel {
     public String description;
     public Float cost;
-    @As("MM/dd/yyyy HH:mm:ss")
+    @As({"MM/dd/yyyy HH:mm:ss", "MM/dd/yyyy"})
     public Date date;
 
     @ManyToMany

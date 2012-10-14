@@ -1,9 +1,10 @@
-package controllers;
+package controllers.services;
 
 import models.Bowl;
 import models.Participant;
 import util.controller.GenericController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,16 @@ import java.util.List;
 
 public class BowlsController extends GenericController {
 
-    public static void create( Bowl bowl ) {
+    public static void create( Bowl bowl, List<Long> participants ) {
+        if( participants != null && !participants.isEmpty() ) {
+            bowl.participants = new ArrayList<Participant>();
+            for( Long id : participants ) {
+                Participant p = Participant.findById( id );
+                if( p != null ) {
+                    bowl.participants.add( p );
+                }
+            }
+        }
         bowl.save();
 
         renderJSON(bowl);

@@ -19,7 +19,7 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void create() throws IllegalAccessException, UnsupportedEncodingException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Http.Response response = post(Router.reverse("ParticipantsController.create").url, participant);
+        Http.Response response = post(Router.reverse(ParticipantsController_create).url, "participant", participant);
 
         assertEquals( 200, (Object) response.status);
 
@@ -34,11 +34,11 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void read() throws UnsupportedEncodingException, IllegalAccessException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Http.Response response = post(Router.reverse("ParticipantsController.create").url, participant);
+        Http.Response response = post(Router.reverse(ParticipantsController_create).url, "participant", participant);
 
         Participant returnedParticipant = Participant.fromJson( getContent(response) );
 
-        returnedParticipant = Participant.fromJson( getContent( get(Router.reverse("ParticipantsController.read", ImmutableMap.of("id", (Object) returnedParticipant.id)).url) ) );
+        returnedParticipant = Participant.fromJson( getContent( get(Router.reverse(ParticipantsController_read, ImmutableMap.of("id", (Object) returnedParticipant.id)).url) ) );
 
         assertNotNull(returnedParticipant);
         assertEquals(participant.username, returnedParticipant.username);
@@ -49,19 +49,19 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void update() throws UnsupportedEncodingException, IllegalAccessException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        Participant returnedBowl = Participant.fromJson(getContent(post(Router.reverse("ParticipantsController.create").url, participant)));
+        Participant returnedBowl = Participant.fromJson(getContent(post(Router.reverse(ParticipantsController_create).url, "participant", participant)));
         participant.username += " UPDATED";
         participant.email += " UPDATED";
         participant.fullName += " UPDATED";
 
-        returnedBowl = Participant.fromJson( getContent( put(Router.reverse( "ParticipantsController.update", ImmutableMap.of("id", (Object) returnedBowl.id ) ).url, participant) ) );
+        returnedBowl = Participant.fromJson( getContent( put(Router.reverse( ParticipantsController_update, ImmutableMap.of("id", (Object) returnedBowl.id ) ).url, participant) ) );
         assertNotNull( returnedBowl );
         assertNotNull( returnedBowl.id );
         assertEquals( participant.username, returnedBowl.username );
         assertEquals( participant.email, returnedBowl.email );
         assertEquals( participant.fullName, returnedBowl.fullName );
 
-        returnedBowl = Participant.fromJson( getContent( get(Router.reverse("ParticipantsController.read", ImmutableMap.of("id", (Object) returnedBowl.id)).url) ) );
+        returnedBowl = Participant.fromJson( getContent( get(Router.reverse(ParticipantsController_read, ImmutableMap.of("id", (Object) returnedBowl.id)).url) ) );
         assertNotNull( returnedBowl );
         assertEquals( participant.username, returnedBowl.username );
         assertEquals( participant.email, returnedBowl.email );
@@ -71,25 +71,25 @@ public class ParticipantsControllerTest extends GenericFunctionalTest {
     @Test
     public void delete() throws IllegalAccessException, UnsupportedEncodingException {
         Participant participant = new Participant( "Username", "Password", "EMail", "Full Name" );
-        participant = Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, participant ) ) );
+        participant = Participant.fromJson( getContent( post( Router.reverse(ParticipantsController_create).url, "participant", participant ) ) );
 
-        Http.Response response = delete(Router.reverse("ParticipantsController.delete", ImmutableMap.of("id", (Object) participant.id)).url);
+        Http.Response response = delete(Router.reverse(ParticipantsController_delete, ImmutableMap.of("id", (Object) participant.id)).url);
         assertEquals(200, (Object)response.status );
 
-        response = GET(Router.reverse("ParticipantsController.read", ImmutableMap.of("id", (Object) participant.id)).url);
+        response = GET(Router.reverse(ParticipantsController_read, ImmutableMap.of("id", (Object) participant.id)).url);
         assertEquals( Http.StatusCode.NOT_FOUND, (Object)response.status );
     }
 
     @Test
     public void list() throws IllegalAccessException, UnsupportedEncodingException {
-        List<Participant> bowls = Participant.listFromJson( getContent( get( Router.reverse( "ParticipantsController.list" ).url ) ) );
+        List<Participant> bowls = Participant.listFromJson( getContent( get( Router.reverse( ParticipantsController_list ).url ) ) );
         assertEquals( 0, bowls.size() );
 
         for( int i = 0 ; i< 10; i++ ) {
-            Participant.fromJson( getContent( post( Router.reverse("ParticipantsController.create").url, new Participant( "Username" + i, "Password" + i, "EMail" + i, "Full Name" + i ) ) ) );
+            Participant.fromJson( getContent( post( Router.reverse(ParticipantsController_create).url, "participant", new Participant( "Username" + i, "Password" + i, "EMail" + i, "Full Name" + i ) ) ) );
         }
 
-        bowls = Participant.listFromJson(getContent(get(Router.reverse("ParticipantsController.list").url)));
+        bowls = Participant.listFromJson(getContent(get(Router.reverse(ParticipantsController_list).url)));
         assertEquals( 10, bowls.size() );
     }
 

@@ -3,33 +3,37 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                                Application.index
+
+GET     /app/bowls/new                                   gui.BowlsGuiController.create
+GET     /app/bowls/list                                  gui.BowlsGuiController.list
+GET     /app/bowls/{id}                                  gui.BowlsGuiController.show
 
 
 # Bowls
-POST    /service/bowls                                  BowlsController.create
-GET     /service/bowls/all                              BowlsController.list
-GET     /service/bowls/{id}                             BowlsController.read
-PUT     /service/bowls/{id}                             BowlsController.update
-DELETE  /service/bowls/{id}                             BowlsController.delete
-PUT     /service/bowls/{id}/participants/{pId}          BowlsController.addParticipant
-DELETE  /service/bowls/{id}/participants/{pId}          BowlsController.deleteParticipant
+POST    /services/bowls                                  services.BowlsController.create
+GET     /services/bowls/all                              services.BowlsController.list
+GET     /services/bowls/{id}                             services.BowlsController.read
+PUT     /services/bowls/{id}                             services.BowlsController.update
+DELETE  /services/bowls/{id}                             services.BowlsController.delete
+PUT     /services/bowls/{id}/participants/{pId}          services.BowlsController.addParticipant
+DELETE  /services/bowls/{id}/participants/{pId}          services.BowlsController.deleteParticipant
 
 
 # Expenses
-POST    /service/expenses/{id}                          ExpensesController.create
-DELETE  /service/expenses/{id}                          ExpensesController.delete
-PUT     /service/expenses/{id}                          ExpensesController.update
-PUT     /service/expenses/{id}/participants/{pId}       ExpensesController.addParticipant
-DELETE  /service/expenses/{id}/participants/{pId}       ExpensesController.deleteParticipant
+POST    /services/expenses/{id}                          services.ExpensesController.create
+DELETE  /services/expenses/{id}                          services.ExpensesController.delete
+PUT     /services/expenses/{id}                          services.ExpensesController.update
+PUT     /services/expenses/{id}/participants/{pId}       services.ExpensesController.addParticipant
+DELETE  /services/expenses/{id}/participants/{pId}       services.ExpensesController.deleteParticipant
 
 
 # Participants
-POST    /service/participants                           ParticipantsController.create
-GET     /service/participants/all                       ParticipantsController.list
-GET     /service/participants/{id}                      ParticipantsController.read
-PUT     /service/participants/{id}                      ParticipantsController.update
-DELETE  /service/participants/{id}                      ParticipantsController.delete
+POST    /services/participants                           services.ParticipantsController.create
+GET     /services/participants/all                       services.ParticipantsController.list
+GET     /services/participants/{id}                      services.ParticipantsController.read
+PUT     /services/participants/{id}                      services.ParticipantsController.update
+DELETE  /services/participants/{id}                      services.ParticipantsController.delete
 
 
 # Ignore favicon requests

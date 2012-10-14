@@ -13,7 +13,7 @@ import java.util.List;
 public class Bowl extends GenericModel {
     public String title;
     public String description;
-    @As("MM/dd/yyyy HH:mm:ss")
+    @As({"MM/dd/yyyy HH:mm:ss", "MM/dd/yyyy"})
     public Date date;
     public Float cost;
 
