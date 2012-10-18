@@ -8,13 +8,28 @@
 <table>
     <tbody>
     <tr>
-        <td>
+        <td class="span2">
             <a href="@{gui.ParticipantsGuiController.show(participant.id)}"> ${participant.username} </a>
         </td>
+        <td class="span2">
+            ${participant.fullName}
+        </td>
         <td>
-            <a href="@{gui.ParticipantsGuiController.show(participant.id)}"> ${participant.fullName} </a>
+            <formclass="condensed" id="deleteParticipant_${participant.id}" method="DELETE" action="@{services.ParticipantsController.delete(participant.id)}">
+                <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteParticipant_${participant.id}', successFunc)"></i>
+            </form>
         </td>
     </tr>
     </tbody>
 </table>
 #{/list}
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>
