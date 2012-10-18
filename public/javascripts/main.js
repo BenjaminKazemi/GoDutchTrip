@@ -1,3 +1,10 @@
+$(document).ready(function() {
+});
+
+function refresh() {
+    window.location = window.location;
+}
+
 function submitForm(formId, callbackFunc) {
     form = $("#"+formId);
     url = form.attr('action');

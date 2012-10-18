@@ -21,6 +21,7 @@ public class ExpensesController extends GenericController {
         expense.bowl = bowl;
         expense.save();
         bowl.expenses.add(expense);
+        bowl.cost += expense.cost;
         bowl.save();
 
         renderJSON(bowl);
@@ -33,7 +34,15 @@ public class ExpensesController extends GenericController {
             notFound();
         }
 
+        Bowl bowl = expense.bowl;
+        if( bowl.cost != null ) {
+            bowl.cost -= expense.cost;
+        } else {
+            bowl.cost = 0F;
+        }
+
         expense.delete();
+        bowl.save();
 
         ok();
     }

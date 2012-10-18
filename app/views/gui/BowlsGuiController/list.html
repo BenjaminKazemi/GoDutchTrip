@@ -5,13 +5,34 @@
 <br/>
 
 #{list items:bowls, as:"bowl"}
-<table>
+<table class="table-hover table-condensed">
     <tbody>
     <tr>
-        <td>
+        <td class="span2">
             <a href="@{gui.BowlsGuiController.show(bowl.id)}"> ${bowl.title} </a>
         </td>
+
+        <td class="span1">
+            ${bowl.cost}
+        </td>
+
+        <td>
+            <form id="deleteBowl_${bowl.id}" method="DELETE" action="@{services.BowlsController.delete( bowl.id )}" class="condensed">
+                <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteBowl_${bowl.id}', successFunc)"></i>
+            </form>
+        </td>
     </tr>
+
     </tbody>
 </table>
 #{/list}
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>

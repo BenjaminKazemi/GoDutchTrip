@@ -15,13 +15,13 @@ public class Bowl extends GenericModel {
     public String description;
     @As({"MM/dd/yyyy HH:mm:ss", "MM/dd/yyyy"})
     public Date date;
-    public Float cost;
+    public Float cost = 0F;
 
     @ManyToMany
     @JoinTable(name = "tbl_bowl_participant")
     public List<Participant> participants;
 
-    @OneToMany(mappedBy = "bowl" )
+    @OneToMany( mappedBy = "bowl", cascade = CascadeType.ALL )
     public List<Expense> expenses;
 
     public Bowl() {

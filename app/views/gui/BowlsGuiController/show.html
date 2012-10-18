@@ -10,9 +10,89 @@
     <tbody>
     <tr>
         <td> Title: ${bowl.title} </td>
-        <td> Description: ${bowl.description} </td>
+    </tr>
+    <tr>
+        <td> Cost: ${bowl.cost} </td>
+    </tr>
+    <tr>
         <td> Date: ${bowl.date} </td>
-        <td> Participants#: ${bowl.participants?.size()} </td>
+    </tr>
+    <tr>
+        <td> Description: ${bowl.description} </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            Expenses
+            <a href="@{gui.BowlsGuiController.expenses(bowl.id)}" class="btn btn-primary btn-mini"><i class="icon-plus-sign"></i> Add</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                #{list bowl.expenses, as:'e'}
+                <tr>
+                    <td>
+                        <a href="@{gui.BowlsGuiController.expense(e.id)}">
+                            ${e.cost}
+                        </a>
+                    </td>
+                    <td>
+                        ${e.date}
+                    </td>
+                    <td class="span2">
+                        ${e.description}
+                    </td>
+                    <td>
+                        <form id="deleteExpense_${e.id}" method="DELETE" action="@{services.ExpensesController.delete( e.id )}">
+                            <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteExpense_${e.id}', successFunc)"></i>
+                        </form>
+                    </td>
+                </tr>
+                #{/list}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            Participants
+            <a href="@{gui.BowlsGuiController.participants(bowl.id)}" class="btn btn-primary btn-mini"><i class="icon-plus-sign"></i> Add</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                #{list bowl.participants, as:'p'}
+                    <tr>
+                        <td class="span2">
+                            ${p.username}
+                        </td>
+                        <td>
+                            <form id="deleteParticipant_${p.id}" method="DELETE" action="@{services.BowlsController.deleteParticipant( bowl.id, p.id )}">
+                                <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteParticipant_${p.id}', successFunc)"></i>
+                            </form>
+                        </td>
+                    </tr>
+                    #{/list}
+                </tbody>
+            </table>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>

@@ -9,6 +9,9 @@ GET     /app                                             Application.app
 GET     /app/bowls/new                                   gui.BowlsGuiController.create
 GET     /app/bowls/list                                  gui.BowlsGuiController.list
 GET     /app/bowls/{id}                                  gui.BowlsGuiController.show
+GET     /app/bowls/{id}/participants                     gui.BowlsGuiController.participants
+GET     /app/bowls/{id}/expenses                         gui.BowlsGuiController.expenses
+GET     /app/bowls/expenses/{id}                         gui.BowlsGuiController.expense
 
 GET     /app/participants/new                            gui.ParticipantsGuiController.create
 GET     /app/participants/list                           gui.ParticipantsGuiController.list

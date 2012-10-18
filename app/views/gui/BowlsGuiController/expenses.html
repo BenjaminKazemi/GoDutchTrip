@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'New Expense' /}
+
+<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<br/>
+<a href="@{gui.BowlsGuiController.show(bowl.id)}">Go back to ${bowl.title}</a>
+<br/>
+<br/>
+
+<form id="createExpense" class="form-horizontal" method="POST" action="@{services.ExpensesController.create(bowl.id)}">
+    <h3>New Expense</h3>
+    <br/>
+        <input type="text" class="input-large" id="expense.cost" name="expense.cost" placeholder="Cost" />
+    <br/>
+    <br/>
+        <textarea class="input-large" id="expense.description" name="expense.description" title="description"></textarea>
+    <br/>
+    <br/>
+        <input type="text" class="input-small" id="expense.date" name="expense.date" placeholder="date" />
+    <br/>
+    <br/>
+
+    <button type="submit" class="btn btn-primary" onclick="return submitForm('createExpense', successFunc)">Save</button>
+</form>
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            alert( "Expense was added to the bowl successfully.")
+        }
+    }
+
+</script>

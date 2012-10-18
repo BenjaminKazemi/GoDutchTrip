@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'New Expense' /}
+
+<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<br/>
+<a href="@{gui.BowlsGuiController.show(expense.bowl.id)}">Go back to ${expense.bowl.title}</a>
+<br/>
+<br/>
+
+<table>
+    <tbody>
+        <tr>
+            <td> Cost: ${expense.cost} </td>
+        </tr>
+        <tr>
+            <td> Date: ${expense.date} </td>
+        </tr>
+        <tr>
+            <td> Description: ${expense.description} </td>
+        </tr>
+    </tbody>
+</table>

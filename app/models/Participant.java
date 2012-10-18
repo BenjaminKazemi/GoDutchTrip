@@ -3,10 +3,12 @@ package models;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import play.db.jpa.Model;
+import util.Pagination;
 import util.annotation.IgnoreGSon;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,5 +43,21 @@ public class Participant extends GenericModel {
 
     public static List<Participant> listFromJson(String json) {
         return new Gson().fromJson( json, new TypeToken<List<Participant>>() {}.getType() );
+    }
+
+    public static List<Participant> findUser(String username) {
+        return Participant.findAll();
+    }
+
+    public static List<Participant> findUsersByUsernameExcludeBowls( String usernameStarts, Bowl bowl, Pagination pagination ) {
+        List<Participant> participants = new ArrayList<Participant>();
+
+        if( pagination != null ) {
+            participants = Participant.find( "lower(username) LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", usernameStarts.toLowerCase() + "%", bowl.id ).fetch();
+        } else {
+            participants = Participant.find( "lower(username) LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", usernameStarts.toLowerCase() + "%", bowl.id ).fetch( pagination.page, pagination.length );
+        }
+
+        return participants;
     }
 }
