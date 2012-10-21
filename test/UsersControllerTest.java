@@ -12,7 +12,7 @@ import play.mvc.Router;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class ParticipantsControllerTest extends GenericFunctionalTest {
+public class UsersControllerTest extends GenericFunctionalTest {
 
     @Before
     public void before() {
