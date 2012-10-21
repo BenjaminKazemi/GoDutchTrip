@@ -39,7 +39,7 @@ public class BowlsGuiController extends GuiController {
         Bowl bowl = Bowl.findById(id);
         List<Participant> bowlParticipants = new ArrayList<Participant>();
 
-        bowlParticipants = Participant.calculateShares( bowl );
+        bowlParticipants = Participant.calculateShares(bowl);
 
         render( bowl, bowlParticipants );
     }
@@ -62,9 +62,10 @@ public class BowlsGuiController extends GuiController {
     }
 
     public static void expenses( Long id ) {
-        Bowl bowl = Bowl.findById( id );
+        Bowl bowl = Bowl.fetchUsersById( id );
+        List<User> users = bowl.users;
 
-        render( bowl );
+        render( bowl, users );
     }
 
     public static void expense( Long id ) {

@@ -19,6 +19,14 @@
         <input type="text" class="input-small" id="expense.date" name="expense.date" placeholder="date" />
     <br/>
     <br/>
+        Payer:
+        <select class="input-medium" id="expense.payer.id" name="expense.payer.id">
+            #{list users, as:"u"}
+                <option value="${u.id}"> ${u.username} </option>
+            #{/list}
+        </select>
+    <br/>
+    <br/>
 
     <button type="submit" class="btn btn-primary" onclick="return submitForm('createExpense', successFunc)">Save</button>
 </form>

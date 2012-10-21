@@ -92,6 +92,11 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
         assertEquals( expense.payer.fullName, bowl.expenses.get(0).payer.fullName );
         assertEquals( expense.payer.username, bowl.expenses.get(0).payer.username );
 
+        assertEquals( 1, bowl.expenses.get(0).participants.size() );
+        assertEquals( expense.payer.id, bowl.expenses.get(0).participants.get(0).user.id );
+        assertEquals( expense.payer.email, bowl.expenses.get(0).participants.get(0).user.email );
+        assertEquals( expense.payer.fullName, bowl.expenses.get(0).participants.get(0).user.fullName );
+        assertEquals( expense.payer.username, bowl.expenses.get(0).participants.get(0).user.username );
     }
 
     @Test

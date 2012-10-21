@@ -20,9 +20,11 @@ public class Bowl extends GenericModel {
 
     @ManyToMany
     @JoinTable( name = "tbl_bowl_user", joinColumns = {@JoinColumn(name = "bowl_id")} )
+    @OrderBy("username")
     public List<User> users = new ArrayList<User>();
 
     @OneToMany( mappedBy = "bowl", cascade = CascadeType.ALL )
+    @OrderBy("date, cost")
     public List<Expense> expenses;
 
     public Bowl() {
@@ -64,4 +66,15 @@ public class Bowl extends GenericModel {
         }
         recalculateShares();
     }
+
+    public void addExpense( Expense expense ) {
+        expenses.add( expense );
+        cost += expense.cost;
+        save();
+    }
+
+    public static Bowl fetchUsersById( Long id ) {
+        return find( " FROM Bowl b JOIN FETCH b.users WHERE b.id = ? ", id ).first();
+    }
+
 }

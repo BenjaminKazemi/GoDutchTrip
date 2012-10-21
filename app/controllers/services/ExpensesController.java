@@ -27,9 +27,12 @@ public class ExpensesController extends GenericController {
 
         expense.bowl = bowl;
         expense.save();
-        bowl.expenses.add(expense);
-        bowl.cost += expense.cost;
-        bowl.save();
+
+        if( expense.payer != null ) {
+            expense.addParticipant( new Participant( expense.payer, expense ) );
+        }
+
+        bowl.addExpense(expense);
 
         renderJSON(bowl);
     }
@@ -80,8 +83,8 @@ public class ExpensesController extends GenericController {
         User user = User.findById(pId);
         Participant participant = new Participant( user, expense );
 
-        expense.addParticipant( participant );
-        expense.save();
+        expense.addParticipant(participant);
+//        expense.save();
 
         renderJSON(expense);
     }
@@ -100,11 +103,11 @@ public class ExpensesController extends GenericController {
     public static void addAllParticipants( Long id ) {
         Expense expense = Expense.findById( id );
 
-        List<User> users = Expense.findAllNonParticipantUsers(expense, new Pagination(1, 10));
+        List<User> users = User.findAllNonParticipantUsers(expense, new Pagination(1, 10));
         Participant participant;
         for( User user : users ) {
             participant = new Participant( user, expense );
-            expense.addParticipant( participant );
+            expense.addParticipant(participant);
         }
 
         renderJSON(expense);

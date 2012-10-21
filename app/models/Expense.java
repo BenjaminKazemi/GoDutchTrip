@@ -30,7 +30,7 @@ public class Expense extends GenericModel {
     public User payer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expense")
-    public List<Participant> participants;
+    public List<Participant> participants = new ArrayList<Participant>();
 
     @ManyToOne
     @JoinColumn(name = "bowl_id")
@@ -50,21 +50,6 @@ public class Expense extends GenericModel {
         return new Gson().fromJson(json, Expense.class);
     }
 
-    public static List<User> findAllNonParticipantUsers( Expense expense, Pagination pagination ) {
-        List<User> users = new ArrayList<User>();
-        JPAQuery query = User.find(" id IN (SELECT u.id FROM Expense e1 JOIN e1.bowl b JOIN b.users u WHERE e1 = ?) " +
-                " AND id NOT IN (SELECT p.user.id FROM Expense e2 JOIN e2.participants p WHERE e2 = ? ) ",
-                expense, expense );
-
-        if( pagination != null ) {
-            users = query.fetch( pagination.page, pagination.length );
-        } else {
-            users = query.fetch();
-        }
-
-        return users;
-    }
-
     public void recalculateShares() {
         for( Participant p : participants ) {
             p.quota = cost / participants.size();
@@ -79,7 +64,7 @@ public class Expense extends GenericModel {
     }
 
     public void removeParticipant( User user ) {
-        Participant.delete(" expense = ? AND user = ?", this, user );
+        Participant.delete(" expense = ? AND user = ?", this, user);
         recalculateShares();
     }
 
