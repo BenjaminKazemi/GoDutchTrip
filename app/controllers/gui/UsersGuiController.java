@@ -1,7 +1,6 @@
 package controllers.gui;
 
-import models.Bowl;
-import models.Participant;
+import models.User;
 import util.controller.GuiController;
 
 import java.util.List;
@@ -13,29 +12,29 @@ import java.util.List;
  * Time: 8:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ParticipantsGuiController extends GuiController {
+public class UsersGuiController extends GuiController {
 
     public static void create() {
         render();
     }
 
     public static void list() {
-        List<Participant> participants = Participant.findAll();
+        List<User> users = User.findAll();
 
-        render( participants );
+        render(users);
     }
 
     public static void show( Long id ) {
-        Participant participant = Participant.findById(id);
+        User user = User.findById(id);
 
-        render( participant );
+        render(user);
     }
 
     public static void delete( Long id ) {
-        Participant participant = Participant.findById( id );
-        participant.delete();
+        User user = User.findById(id);
+        user.delete();
 
-        render( participant );
+        render(user);
     }
 
 }

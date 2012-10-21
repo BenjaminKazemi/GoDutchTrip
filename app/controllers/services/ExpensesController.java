@@ -3,7 +3,11 @@ package controllers.services;
 import models.Bowl;
 import models.Expense;
 import models.Participant;
+import models.User;
+import util.Pagination;
 import util.controller.GenericController;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,6 +21,9 @@ public class ExpensesController extends GenericController {
 
     public static void create( Long id, Expense expense ) {
         Bowl bowl = Bowl.findById( id );
+        if( expense.payer != null ) {
+            expense.payer = User.findById( expense.payer.id );
+        }
 
         expense.bowl = bowl;
         expense.save();
@@ -70,9 +77,10 @@ public class ExpensesController extends GenericController {
 
     public static void addParticipant( Long id, Long pId ) {
         Expense expense = Expense.findById( id );
-        Participant participant = Participant.findById( pId );
+        User user = User.findById(pId);
+        Participant participant = new Participant( user, expense );
 
-        expense.participants.add( participant );
+        expense.addParticipant( participant );
         expense.save();
 
         renderJSON(expense);
@@ -82,8 +90,22 @@ public class ExpensesController extends GenericController {
         Expense expense = Expense.findById( id );
         Participant participant = Participant.findById( pId );
 
-        expense.participants.remove( participant );
-        expense.save();
+        participant.delete();
+
+        expense.recalculateShares();
+
+        renderJSON(expense);
+    }
+
+    public static void addAllParticipants( Long id ) {
+        Expense expense = Expense.findById( id );
+
+        List<User> users = Expense.findAllNonParticipantUsers(expense, new Pagination(1, 10));
+        Participant participant;
+        for( User user : users ) {
+            participant = new Participant( user, expense );
+            expense.addParticipant( participant );
+        }
 
         renderJSON(expense);
     }

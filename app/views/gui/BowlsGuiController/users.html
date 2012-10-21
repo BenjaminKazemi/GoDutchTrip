@@ -1,0 +1,78 @@
+#{extends 'main.html' /}
+#{set title:'Add Participant' /}
+
+<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<br/>
+<a href="@{gui.BowlsGuiController.show(bowl.id)}">Go back to ${bowl.title}</a>
+<br/>
+<br/>
+
+<table>
+    <tbody>
+<tr>
+    <td>
+        Users
+    </td>
+</tr>
+<tr>
+    <td>
+        <table>
+            <tbody>
+            #{list bowl.users, as:'p'}
+            <tr>
+                <td class="span2">
+                ${p.username}
+                </td>
+                <td>
+                    <form id="deleteUser_${p.id}" method="DELETE" action="@{services.BowlsController.deleteUser( bowl.id, p.id )}">
+                        <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteUser_${p.id}', successDeleteUserFunc)"></i>
+                    </form>
+                </td>
+            </tr>
+            #{/list}
+            </tbody>
+        </table>
+    </td>
+</tr>
+
+</tbody>
+</table>
+
+<form id="searchParticipant" class="form-horizontal" method="PUT" action="@{gui.BowlsGuiController.users(bowl.id)}">
+    <h3>Search Participants</h3>
+    <br/>
+        <input type="text" class="input-large" id="query" name="query" placeholder="Username" value="${query}" />
+        <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table>
+    <tbody>
+
+    #{list users, as:'u'}
+        <tr>
+            <td> ${u.username}</td>
+            <td>
+                <form id="addUser_${u.id}" method="PUT" action="@{services.BowlsController.addUser(bowl.id, u.id)}">
+                    <button class="btn btn-primary btn-mini" onclick="return submitForm('addUser_${u.id}', successFunc)">Add</button>
+                </form>
+            </td>
+        </tr>
+    #{/list}
+    </tbody>
+</table>
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            alert( "User was added to the bowl successfully.")
+            window.location = "@{gui.BowlsGuiController.users(bowl.id)}";
+        }
+    }
+
+    function successDeleteUserFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import play.data.binding.As;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class Bowl extends GenericModel {
     public Float cost = 0F;
 
     @ManyToMany
-    @JoinTable(name = "tbl_bowl_participant")
-    public List<Participant> participants;
+    @JoinTable( name = "tbl_bowl_user", joinColumns = {@JoinColumn(name = "bowl_id")} )
+    public List<User> users = new ArrayList<User>();
 
     @OneToMany( mappedBy = "bowl", cascade = CascadeType.ALL )
     public List<Expense> expenses;
@@ -41,4 +42,26 @@ public class Bowl extends GenericModel {
         return new Gson().fromJson( json, new TypeToken<List<Bowl>>() {}.getType() );
     }
 
+    public void recalculateShares() {
+        for( Expense expense : expenses ) {
+            for( Participant p : expense.participants ) {
+                p.quota = expense.cost / expense.participants.size();
+                p.save();
+            }
+        }
+    }
+
+    public void addUser( User user ) {
+        users.add( user );
+        save();
+    }
+
+    public void removeUser( User user ) {
+        users.remove( user );
+        save();
+        for( Expense expense : expenses ) {
+            expense.removeParticipant( user );
+        }
+        recalculateShares();
+    }
 }

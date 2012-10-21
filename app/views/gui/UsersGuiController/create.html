@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title:'New Participant' /}
+
+<a href="@{gui.UsersGuiController.list()}">Users</a>
+<br/>
+<br/>
+
+<form id="createParticipant" class="form-horizontal" method="POST" action="@{services.UsersController.create()}">
+    <h3>New User</h3>
+    <br/>
+        <input type="text" class="input-large" id="user.email" name="user.email" placeholder="EMail" />
+    <br/>
+    <br/>
+        <input class="input-large" id="user.fullName" name="user.fullName" placeholder="Full Name"/>
+    <br/>
+    <br/>
+        <input type="text" class="input-small" id="user.username" name="user.username" placeholder="Username" />
+    <br/>
+    <br/>
+
+    <button type="submit" class="btn btn-primary" onclick="return submitForm('createParticipant', successFunc)">Save</button>
+</form>
+
+<script type="text/javascript">
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            alert( "User was saved successfully.")
+        }
+    }
+</script>

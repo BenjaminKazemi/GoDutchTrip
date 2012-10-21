@@ -1,7 +1,7 @@
 package controllers.services;
 
 import models.Bowl;
-import models.Participant;
+import models.User;
 import util.controller.GenericController;
 
 import java.util.ArrayList;
@@ -17,17 +17,17 @@ import java.util.List;
 
 public class BowlsController extends GenericController {
 
-    public static void create( Bowl bowl, List<Long> participants ) {
-        if( participants != null && !participants.isEmpty() ) {
-            bowl.participants = new ArrayList<Participant>();
-            for( Long id : participants ) {
-                Participant p = Participant.findById( id );
-                if( p != null ) {
-                    bowl.participants.add( p );
+    public static void create( Bowl bowl, List<Long> users ) {
+        bowl.save();
+
+        if( users != null && !users.isEmpty() ) {
+            for( Long id : users ) {
+                User u = User.findById(id);
+                if( u != null ) {
+                    bowl.addUser( u );
                 }
             }
         }
-        bowl.save();
 
         renderJSON(bowl);
     }
@@ -81,24 +81,22 @@ public class BowlsController extends GenericController {
         renderJSON(bowls);
     }
 
-    public static void addParticipant( Long id, Long pId ) {
-        Bowl bowl = Bowl.findById(id);
-        Participant participant = Participant.findById( pId );
+    public static void addUser(Long id, Long pId) {
+        Bowl bowl = Bowl.findById( id );
+        User user = User.findById( pId );
 
-        bowl.participants.add( participant );
-        bowl.save();
+        bowl.addUser(user);
 
-        renderJSON(bowl);
+        renderJSON( bowl );
     }
 
-    public static void deleteParticipant( Long id, Long pId ) {
-        Bowl bowl = Bowl.findById(id);
-        Participant participant = Participant.findById( pId );
+    public static void deleteUser(Long id, Long pId) {
+        Bowl bowl = Bowl.findById( id );
+        User user = User.findById( pId );
 
-        bowl.participants.remove(participant);
-        bowl.save();
+        bowl.removeUser(user);
 
-        renderJSON(bowl);
+        renderJSON( bowl );
     }
 
 }

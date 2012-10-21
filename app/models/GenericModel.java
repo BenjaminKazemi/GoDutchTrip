@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -41,8 +42,21 @@ public abstract class GenericModel extends Model {
                 Object value = tmp.get(this);
                 if( value instanceof Date) {
                     value = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format( value );
+                    params += klassName + "." + tmp.getName() + "=" + URLEncoder.encode( value.toString(), Charset.defaultCharset().toString() );
+                } else if( value instanceof List) {
+                    List list = (List)value;
+                    int j = 0;
+                    for( Object item : list ) {
+                        params += tmp.getName() + "[" + j++ + "]=" + URLEncoder.encode( item.toString(), Charset.defaultCharset().toString() );
+                        if( j < list.size() ) {
+                            params += "&";
+                        }
+                    }
+                } else if( value instanceof GenericModel ) {
+                    params += ((GenericModel)value).toParams(klassName + "." + tmp.getName());
+                } else {
+                    params += klassName + "." + tmp.getName() + "=" + URLEncoder.encode( value.toString(), Charset.defaultCharset().toString() );
                 }
-                params += klassName + "." + tmp.getName() + "=" + URLEncoder.encode( value.toString(), Charset.defaultCharset().toString() );
                 if( fields.hasNext() ) {
                     params += "&";
                 }

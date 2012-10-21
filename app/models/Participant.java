@@ -1,12 +1,11 @@
 package models;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import play.db.jpa.Model;
-import util.Pagination;
+import controllers.services.ExpensesController;
 import util.annotation.IgnoreGSon;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,50 +13,58 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: ben
- * Date: 9/22/12
- * Time: 3:50 PM
+ * Date: 10/20/12
+ * Time: 2:19 PM
  * To change this template use File | Settings | File Templates.
  */
 
 @Entity
 @Table(name = "tbl_participant")
 public class Participant extends GenericModel {
-    public String fullName;
-    public String email;
-    public String username;
+    @ManyToOne
+    public User user;
+
+    @ManyToOne
     @IgnoreGSon
-    public String password;
+    public Expense expense;
+
+    public Float quota;
 
     public Participant() {}
 
-    public Participant(String username, String password, String email, String fullName) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.fullName = fullName;
+    public Participant(User user, Float quota) {
+        this.user = user;
+        this.quota = quota;
     }
 
-    public static Participant fromJson(String json) {
-        return new Gson().fromJson(json, Participant.class);
+    public Participant( User user, Expense expense ) {
+        this.user = user;
+        this.expense = expense;
     }
 
-    public static List<Participant> listFromJson(String json) {
-        return new Gson().fromJson( json, new TypeToken<List<Participant>>() {}.getType() );
-    }
+    public static List<Participant> calculateShares(Bowl bowl) {
+        List<Participant> retValue = new ArrayList<Participant>();
 
-    public static List<Participant> findUser(String username) {
-        return Participant.findAll();
-    }
-
-    public static List<Participant> findUsersByUsernameExcludeBowls( String usernameStarts, Bowl bowl, Pagination pagination ) {
-        List<Participant> participants = new ArrayList<Participant>();
-
-        if( pagination != null ) {
-            participants = Participant.find( "lower(username) LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", usernameStarts.toLowerCase() + "%", bowl.id ).fetch();
-        } else {
-            participants = Participant.find( "lower(username) LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", usernameStarts.toLowerCase() + "%", bowl.id ).fetch( pagination.page, pagination.length );
+        Participant p = null;
+        for( User user : bowl.users ) {
+            Object[] obj = find(" " +
+                    " SELECT u, (SELECT SUM(p.quota) FROM Participant p JOIN p.expense e JOIN e.bowl b WHERE p.user = u AND b = ?) " +
+                    " FROM User u " +
+                    " WHERE u.id = ? ",
+                    bowl, user.id).first();
+            try {
+                Float quota = 0F;
+                if( obj[1] != null ) {
+                    quota = Float.valueOf(obj[1].toString());
+                }
+                p = new Participant( (User)obj[0], quota );
+            }
+            catch( Exception ignore ) {}
+            if( p != null ) {
+                retValue.add( p );
+            }
         }
 
-        return participants;
+        return retValue;
     }
 }

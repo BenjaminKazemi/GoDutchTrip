@@ -20,25 +20,26 @@ import java.util.List;
 
 public abstract class GenericFunctionalTest extends FunctionalTest {
     private static final String CONTENT_TYPE_URL = "application/x-www-form-urlencoded";
+
     public static final String BowlsController_create = "services.BowlsController.create";
     public static final String BowlsController_list = "services.BowlsController.list";
     public static final String BowlsController_read = "services.BowlsController.read";
     public static final String BowlsController_update = "services.BowlsController.update";
     public static final String BowlsController_delete = "services.BowlsController.delete";
-    public static final String BowlsController_addParticipant = "services.BowlsController.addParticipant";
-    public static final String BowlsController_deleteParticipant = "services.BowlsController.deleteParticipant";
+    public static final String BowlsController_addUser = "services.BowlsController.addUser";
+    public static final String BowlsController_deleteUser = "services.BowlsController.deleteUser";
 
-    public static final String ParticipantsController_create = "services.ParticipantsController.create";
-    public static final String ParticipantsController_list = "services.ParticipantsController.list";
-    public static final String ParticipantsController_read = "services.ParticipantsController.read";
-    public static final String ParticipantsController_update = "services.ParticipantsController.update";
-    public static final String ParticipantsController_delete = "services.ParticipantsController.delete";
+    public static final String UsersController_create = "services.UsersController.create";
+    public static final String UsersController_list = "services.UsersController.list";
+    public static final String UsersController_read = "services.UsersController.read";
+    public static final String UsersController_update = "services.UsersController.update";
+    public static final String UsersController_delete = "services.UsersController.delete";
 
     public static final String ExpensesController_create = "services.ExpensesController.create";
-//    public static final String ExpensesController_read = "services.ExpensesController.read";
     public static final String ExpensesController_update = "services.ExpensesController.update";
     public static final String ExpensesController_delete = "services.ExpensesController.delete";
     public static final String ExpensesController_addParticipant = "services.ExpensesController.addParticipant";
+    public static final String ExpensesController_addAllParticipants = "services.ExpensesController.addAllParticipants";
     public static final String ExpensesController_deleteParticipant = "services.ExpensesController.deleteParticipant";
 
     public static Http.Request newRequest() {

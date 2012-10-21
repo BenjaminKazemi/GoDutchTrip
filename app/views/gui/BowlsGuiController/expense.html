@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'New Expense' /}
 
-<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<a href="@{gui.BowlsGuiController.list()}" xmlns="http://www.w3.org/1999/html">Bowls</a>
 <br/>
 <a href="@{gui.BowlsGuiController.show(expense.bowl.id)}">Go back to ${expense.bowl.title}</a>
 <br/>
@@ -18,5 +18,50 @@
         <tr>
             <td> Description: ${expense.description} </td>
         </tr>
+
+        <tr>
+            <td>
+                <form class="condensed" id="addAllParticipants" method="PUT" action="@{services.ExpensesController.addAllParticipants( expense.id )}">
+                    Participants
+                    <a href="@{gui.BowlsGuiController.expenseParticipants(expense.id)}" class="btn btn-primary btn-mini"><i class="icon-plus-sign"></i> Add</a>
+                    <button type="submit" class="btn btn-primary btn-mini" onclick="return submitForm('addAllParticipants', successFunc)"> <i class="icon-plus-sign"></i>Add All</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                    #{list expense.participants, as:'p'}
+                    <tr>
+                        <td class="span2">
+                            ${p.user.username}
+                        </td>
+                        <td>
+                            ${p.quota}
+                        </td>
+                        <td>
+                            <form id="deleteParticipant_${p.id}" method="DELETE" action="@{services.ExpensesController.deleteParticipant( expense.id, p.id )}">
+                                <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteParticipant_${p.id}', successFunc)"></i>
+                            </form>
+                        </td>
+                    </tr>
+                    #{/list}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
     </tbody>
 </table>
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>
+

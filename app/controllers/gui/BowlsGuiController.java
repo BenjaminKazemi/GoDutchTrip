@@ -3,9 +3,11 @@ package controllers.gui;
 import models.Bowl;
 import models.Expense;
 import models.Participant;
+import models.User;
 import util.Pagination;
 import util.controller.GuiController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +37,11 @@ public class BowlsGuiController extends GuiController {
 
     public static void show( Long id ) {
         Bowl bowl = Bowl.findById(id);
+        List<Participant> bowlParticipants = new ArrayList<Participant>();
 
-        render( bowl );
+        bowlParticipants = Participant.calculateShares( bowl );
+
+        render( bowl, bowlParticipants );
     }
 
     public static void delete( Long id ) {
@@ -46,27 +51,36 @@ public class BowlsGuiController extends GuiController {
         render( bowl );
     }
 
-    public static void participants( Long id, String query ) {
+    public static void users( Long id, String query ) {
         Bowl bowl = Bowl.findById( id );
-//        List<Participant> participants = Participant.find( "username LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", query + "%", bowl.id ).fetch(1,10);
-        List<Participant> participants = null;
+        List<User> users = null;
         if( query != null && !query.isEmpty() ) {
-//            participants = Participant.find( "username LIKE ?", query + "%" ).fetch( 1, 10 );
-//            participants = Participant.find( "username LIKE ? AND username NOT IN (SELECT p.username FROM Bowl b JOIN b.participants p WHERE b.id = ?)", query + "%", bowl.id ).fetch(1,10);
-            participants = Participant.findUsersByUsernameExcludeBowls( query, bowl, new Pagination(1,10) );
+            users = User.findByUsernameExcludeBowls(query, bowl, new Pagination(1, 10));
         }
 
-        render( bowl, participants, query );
+        render( bowl, users, query );
     }
 
     public static void expenses( Long id ) {
         Bowl bowl = Bowl.findById( id );
+
         render( bowl );
     }
 
     public static void expense( Long id ) {
         Expense expense = Expense.findById( id );
+
         render( expense );
+    }
+
+    public static void expenseParticipants( Long id, String query ) {
+        Expense expense = Expense.findById( id );
+        List<User> users = null;
+        if( query != null && !query.isEmpty() ) {
+            users = User.findByUsernameExcludeExpense(query, expense, new Pagination(1, 10));
+        }
+
+        render( expense, users, query );
     }
 
 }

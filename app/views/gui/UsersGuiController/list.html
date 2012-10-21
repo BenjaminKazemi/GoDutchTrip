@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'List of Participants' /}
+
+<a href="@{gui.UsersGuiController.create()}">New User</a>
+<br/>
+
+#{list items:users, as:"user"}
+<table>
+    <tbody>
+    <tr>
+        <td class="span2">
+            <a href="@{gui.UsersGuiController.show(user.id)}"> ${user.username} </a>
+        </td>
+        <td class="span2">
+            ${user.fullName}
+        </td>
+        <td>
+            <formclass="condensed" id="deleteuser_${user.id}" method="DELETE" action="@{services.UsersController.delete(user.id)}">
+                <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteuser_${user.id}', successFunc)"></i>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+#{/list}
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            refresh();
+        }
+    }
+
+</script>

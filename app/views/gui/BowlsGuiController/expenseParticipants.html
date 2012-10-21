@@ -1,0 +1,83 @@
+#{extends 'main.html' /}
+#{set title:'Add Participant' /}
+
+<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+<br/>
+<a href="@{gui.BowlsGuiController.show(expense.bowl.id)}">Go back to ${expense.bowl.title}</a>
+<br/>
+<a href="@{gui.BowlsGuiController.expense(expense.id)}">Go back to ${expense.cost} - ${expense.description}</a>
+<br/>
+<br/>
+
+<table>
+    <tbody>
+    <tr>
+        <td>
+            Users
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                #{list expense.participants, as:'p'}
+                <tr>
+                    <td class="span2">
+                        ${p.user.username}
+                    </td>
+                    <td>
+                        ${p.quota}
+                    </td>
+                    <td>
+                        <form id="deleteParticipant_${p.id}" method="DELETE" action="@{services.ExpensesController.deleteParticipant( expense.id, p.id )}">
+                            <i class="icon-remove pull-right" style="cursor: pointer" onclick="return submitForm('deleteParticipant_${p.id}', successDeleteFunc)"></i>
+                        </form>
+                    </td>
+                </tr>
+                #{/list}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<form id="searchParticipant" class="form-horizontal" method="PUT" action="@{gui.BowlsGuiController.expenseParticipants(expense.id)}">
+    <h3>Search Participants</h3>
+    <br/>
+        <input type="text" class="input-large" id="query" name="query" placeholder="Username" value="${query}" />
+        <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table>
+    <tbody>
+    #{list users, as:'p'}
+        <tr>
+            <td> ${p.username}</td>
+            <td>
+                <form id="addParticipant_${p.id}" method="PUT" action="@{services.ExpensesController.addParticipant(expense.id, p.id)}">
+                    <button class="btn btn-primary btn-mini" onclick="return submitForm('addParticipant_${p.id}', successDeleteFunc)">Add</button>
+                </form>
+            </td>
+        </tr>
+    #{/list}
+    </tbody>
+</table>
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            alert( "Participant added to the expense successfully.")
+            window.location = "@{gui.BowlsGuiController.expenseParticipants(expense.id)}";
+        }
+    }
+
+    function successDeleteFunc(data, textStatus, jqXHR) {
+        if(jqXHR.status == 200 ) {
+            window.location = "@{gui.BowlsGuiController.expenseParticipants(expense.id)}";
+        }
+    }
+
+</script>
