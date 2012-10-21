@@ -29,7 +29,7 @@ public class Expense extends GenericModel {
     @ManyToOne
     public User payer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "expense")
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "expense", fetch = FetchType.EAGER )
     public List<Participant> participants = new ArrayList<Participant>();
 
     @ManyToOne

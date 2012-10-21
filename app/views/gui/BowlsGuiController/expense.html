@@ -55,6 +55,39 @@
             </td>
         </tr>
 
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b> Bill </b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                    #{list bills, as:'b'}
+                    <tr>
+                        <td class="span2">
+                            ${b.from?.username}
+                        </td>
+                        <td class="span1">
+                            ${b.amount}
+                        </td>
+                        <td class="span2">
+                            ${b.to?.username}
+                        </td>
+                    </tr>
+                    #{/list}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
     </tbody>
 </table>
 

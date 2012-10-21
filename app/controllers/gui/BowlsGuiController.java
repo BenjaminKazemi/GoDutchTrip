@@ -1,9 +1,6 @@
 package controllers.gui;
 
-import models.Bowl;
-import models.Expense;
-import models.Participant;
-import models.User;
+import models.*;
 import util.Pagination;
 import util.controller.GuiController;
 
@@ -37,11 +34,11 @@ public class BowlsGuiController extends GuiController {
 
     public static void show( Long id ) {
         Bowl bowl = Bowl.findById(id);
-        List<Participant> bowlParticipants = new ArrayList<Participant>();
 
-        bowlParticipants = Participant.calculateShares(bowl);
+        List<Participant> bowlParticipants = Participant.calculateShares( bowl );
+        List<Bill> bills = Bill.generateByBowl( bowl );
 
-        render( bowl, bowlParticipants );
+        render( bowl, bowlParticipants, bills );
     }
 
     public static void delete( Long id ) {
@@ -62,7 +59,7 @@ public class BowlsGuiController extends GuiController {
     }
 
     public static void expenses( Long id ) {
-        Bowl bowl = Bowl.fetchUsersById( id );
+        Bowl bowl = Bowl.fetchUsersAndExpensesById( id );
         List<User> users = bowl.users;
 
         render( bowl, users );
@@ -70,8 +67,9 @@ public class BowlsGuiController extends GuiController {
 
     public static void expense( Long id ) {
         Expense expense = Expense.findById( id );
+        List<Bill> bills = Bill.generateByExpense( expense );
 
-        render( expense );
+        render( expense, bills );
     }
 
     public static void expenseParticipants( Long id, String query ) {

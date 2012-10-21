@@ -24,7 +24,7 @@ public class Bowl extends GenericModel {
     public List<User> users = new ArrayList<User>();
 
     @OneToMany( mappedBy = "bowl", cascade = CascadeType.ALL )
-    @OrderBy("date, cost")
+    @OrderBy("cost DESC, date ASC")
     public List<Expense> expenses;
 
     public Bowl() {
@@ -73,7 +73,7 @@ public class Bowl extends GenericModel {
         save();
     }
 
-    public static Bowl fetchUsersById( Long id ) {
+    public static Bowl fetchUsersAndExpensesById(Long id) {
         return find( " FROM Bowl b JOIN FETCH b.users WHERE b.id = ? ", id ).first();
     }
 
