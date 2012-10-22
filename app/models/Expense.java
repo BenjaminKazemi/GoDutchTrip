@@ -2,8 +2,7 @@ package models;
 
 import com.google.gson.Gson;
 import play.data.binding.As;
-import util.Pagination;
-import util.annotation.IgnoreGSon;
+import util.annotation.IgnoreGson;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class Expense extends GenericModel {
 
     @ManyToOne
     @JoinColumn(name = "bowl_id")
-    @IgnoreGSon
+    @IgnoreGson
     public Bowl bowl;
 
     public Expense() {

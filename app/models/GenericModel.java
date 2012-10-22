@@ -5,7 +5,7 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 import play.db.jpa.Model;
-import util.annotation.IgnoreGSon;
+import util.annotation.IgnoreGson;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -71,11 +71,11 @@ public abstract class GenericModel extends Model {
         }
 
         public boolean shouldSkipClass(Class<?> clazz) {
-            return clazz.getAnnotation(IgnoreGSon.class) != null;
+            return clazz.getAnnotation(IgnoreGson.class) != null;
         }
 
         public boolean shouldSkipField(FieldAttributes f) {
-            return f.getAnnotation(IgnoreGSon.class) != null;
+            return f.getAnnotation(IgnoreGson.class) != null;
         }
     }
 }

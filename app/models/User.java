@@ -3,7 +3,7 @@ package models;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import util.Pagination;
-import util.annotation.IgnoreGSon;
+import util.annotation.IgnoreGson;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -24,7 +24,7 @@ public class User extends GenericModel {
     public String fullName;
     public String email;
     public String username;
-    @IgnoreGSon
+    @IgnoreGson
     public String password;
 
     public User() {}

@@ -1,9 +1,7 @@
 package models;
 
-import controllers.services.ExpensesController;
-import util.annotation.IgnoreGSon;
+import util.annotation.IgnoreGson;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,7 +23,7 @@ public class Participant extends GenericModel {
     public User user;
 
     @ManyToOne
-    @IgnoreGSon
+    @IgnoreGson
     public Expense expense;
 
     public Float quota;
