@@ -94,6 +94,7 @@ public class ExpensesController extends GenericController {
         Participant participant = Participant.findById( pId );
 
         participant.delete();
+        expense.participants.remove( participant );
 
         expense.recalculateShares();
 
