@@ -38,6 +38,7 @@ public class Bill {
 
     public static List<Bill> generateByBowl( Bowl bowl ) {
         List<Bill> bills = new ArrayList<Bill>();
+        List<Bill> retBills = new ArrayList<Bill>();
 
         List<Object[]> rawBills = Participant.find("" +
                 " SELECT p1, p2, SUM(p.quota) " +
@@ -54,6 +55,26 @@ public class Bill {
             bills.add( new Bill( (User)row[0], (User)row[1], Float.valueOf(row[2].toString()) ) );
         }
 
+        retBills.addAll( bills );
+
+        Bill currentBill;
+        Bill comparingBill;
+        for( int i = 0; i < bills.size(); i++ ) {
+            currentBill = bills.get( i );
+            for( int j = i+1; j < bills.size(); j++ ) {
+                comparingBill = bills.get( j );
+                if( currentBill.from.equals( comparingBill.to ) ) {
+                    if( currentBill.amount > comparingBill.amount ) {
+                        currentBill.amount -= comparingBill.amount;
+                        retBills.remove( comparingBill );
+                    } else {
+                        comparingBill.amount -= currentBill.amount;
+                        retBills.remove( currentBill );
+                    }
+                    break;
+                }
+            }
+        }
 /*
         for( Expense expense : bowl.expenses ) {
             for( Participant p : expense.participants ) {
@@ -64,7 +85,7 @@ public class Bill {
         }
 */
 
-        return  bills;
+        return  retBills;
     }
 
 }
