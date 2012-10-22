@@ -2,11 +2,15 @@
 *.ipr
 *.iws
 
+bin
+data
+dist
 tmp
 logs
 out
 db
 lib
+modules
 test-result
 precompiled
 
