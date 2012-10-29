@@ -1,13 +1,19 @@
 package helper;
 
-import models.GenericModel;
+import models.*;
+import models.enums.Role;
+import org.junit.Before;
 import org.junit.Test;
 import play.mvc.Http;
+import play.mvc.Router;
 import play.test.FunctionalTest;
+import util.security.ISecurityManager;
+import util.security.ServiceSecurityManager;
 
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +26,10 @@ import java.util.List;
 
 public abstract class GenericFunctionalTest extends FunctionalTest {
     private static final String CONTENT_TYPE_URL = "application/x-www-form-urlencoded";
+
+    public static final String LoginController_signIn = "services.LoginController.signIn";
+    public static final String LoginController_signOut = "services.LoginController.signOut";
+    public static final String LoginController_authenticated = "services.LoginController.authenticated";
 
     public static final String BowlsController_create = "services.BowlsController.create";
     public static final String BowlsController_list = "services.BowlsController.list";
@@ -42,9 +52,67 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
     public static final String ExpensesController_addAllParticipants = "services.ExpensesController.addAllParticipants";
     public static final String ExpensesController_deleteParticipant = "services.ExpensesController.deleteParticipant";
 
+    protected static String key;
+
+    @Before
+    public void before() throws UnsupportedEncodingException, IllegalAccessException {
+        deleteAllParticipants();
+        Participant.deleteAll();
+        Expense.deleteAll();
+        Bowl.deleteAll();
+        SecurityModel.deleteAll();
+        User.deleteAll();
+
+        login();
+    }
+
+    public static void deleteAllParticipants() {
+        List<Bowl> bowls = Bowl.findAll();
+        for( Bowl bowl:bowls ) {
+            List<User> users = new ArrayList<User>(bowl.users);
+            for( User u : users) {
+                bowl.removeUser( u );
+            }
+        }
+        List<Expense> expenses = Expense.findAll();
+        for( Expense expense : expenses ) {
+            List<Participant> participants = new ArrayList<Participant>(expense.participants);
+            for( Participant p : participants ) {
+                expense.removeParticipant( p.user );
+            }
+        }
+    }
+
+    protected User login() throws IllegalAccessException, UnsupportedEncodingException {
+        double rand = Math.random();
+        User user = new User();
+        user.username = "test_user_" + rand;
+        user.password = "test_password_" + rand;
+        user.role = Role.USER;
+        user.fullName = "Test User " + rand;
+        user.save();
+
+        key = getContent( post( Router.reverse(LoginController_signIn).url, "username", user.username, "password", user.password ) );
+
+        return user;
+    }
+
+    protected void logout() throws IllegalAccessException, UnsupportedEncodingException {
+        get( Router.reverse(LoginController_signOut).url );
+    }
+
+    public GenericFunctionalTest() {
+//        SecurityModel.deleteAll();
+//        try { User.deleteAll(); }
+//        catch( Exception ignore ) {}
+    }
+
     public static Http.Request newRequest() {
         Http.Request request = FunctionalTest.newRequest();
         request.contentType = "application/json";
+        if( key != null && !key.isEmpty() ) {
+            request.user = key;
+        }
         return request;
     }
 
@@ -69,7 +137,10 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
                         body += "&";
                     }
                 }
+            } else if( obj instanceof String ) {
+                body += name + "=" + URLEncoder.encode( obj.toString(), Charset.defaultCharset().toString() );
             }
+
             if( i < objects.length ) {
                 body += "&";
             }

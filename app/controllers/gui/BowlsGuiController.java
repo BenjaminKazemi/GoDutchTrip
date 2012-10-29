@@ -1,10 +1,9 @@
 package controllers.gui;
 
+import controllers.GuiController;
 import models.*;
 import util.Pagination;
-import util.controller.GuiController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class BowlsGuiController extends GuiController {
     }
 
     public static void list() {
-        List<Bowl> bowls = Bowl.findAll();
+        List<Bowl> bowls = Bowl.findByUser( currentUser );
 
         render( bowls );
     }
@@ -59,7 +58,7 @@ public class BowlsGuiController extends GuiController {
     }
 
     public static void expenses( Long id ) {
-        Bowl bowl = Bowl.fetchUsersAndExpensesById( id );
+        Bowl bowl = Bowl.fetchUsersById( id );
         List<User> users = bowl.users;
 
         render( bowl, users );

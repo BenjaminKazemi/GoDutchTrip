@@ -27,6 +27,9 @@ public class Bowl extends GenericModel {
     @OrderBy("cost DESC, date ASC")
     public List<Expense> expenses;
 
+    @ManyToOne
+    public User owner;
+
     public Bowl() {
     }
 
@@ -73,8 +76,11 @@ public class Bowl extends GenericModel {
         save();
     }
 
-    public static Bowl fetchUsersAndExpensesById(Long id) {
-        return find( " FROM Bowl b JOIN FETCH b.users WHERE b.id = ? ", id ).first();
+    public static Bowl fetchUsersById(Long id) {
+        return find( " FROM Bowl b LEFT JOIN FETCH b.users WHERE b.id = ? ", id ).first();
     }
 
+    public static List<Bowl> findByUser( User user ) {
+        return Bowl.find( " owner = ? ", user ).fetch();
+    }
 }

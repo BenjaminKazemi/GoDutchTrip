@@ -18,6 +18,9 @@ function submitForm(formId, callbackFunc) {
         type: form.attr('method'),
         url: url,
         data: dataString,
+        beforeSend: function( xhr ){
+            xhr.setRequestHeader('Authorization', make_base_auth( $("#key").val(), "" ));
+        },
         error: function(data, textStatus, jqXHR) {
             if(callbackFunc != undefined ) {
                 callbackFunc(data, textStatus, jqXHR);
@@ -30,4 +33,10 @@ function submitForm(formId, callbackFunc) {
         }
     });
     return false;
+}
+
+function make_base_auth( user, password ) {
+    var tok = user + ':' + password;
+    var hash = btoa(tok);
+    return "Basic " + hash;
 }

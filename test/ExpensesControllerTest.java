@@ -15,23 +15,6 @@ import java.util.List;
 
 public class ExpensesControllerTest extends GenericFunctionalTest {
 
-    @Before
-    public void before() {
-        Participant.deleteAll();
-        Expense.deleteAll();
-        deleteAllBowlUsers();
-        Bowl.deleteAll();
-        User.deleteAll();
-    }
-
-    public static void deleteAllBowlUsers() {
-        List<Bowl> bowls = Bowl.findAll();
-        for( Bowl bowl:bowls ) {
-            bowl.users.clear();
-            bowl.save();
-        }
-    }
-
     @Test
     public void create() throws IllegalAccessException, UnsupportedEncodingException {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );

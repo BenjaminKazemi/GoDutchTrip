@@ -2,10 +2,13 @@ package models;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import models.enums.Role;
 import util.Pagination;
 import util.annotation.IgnoreGson;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,8 @@ public class User extends GenericModel {
     public String username;
     @IgnoreGson
     public String password;
+    @Enumerated( EnumType.STRING )
+    public Role role;
 
     public User() {}
 
@@ -36,6 +41,10 @@ public class User extends GenericModel {
         this.fullName = fullName;
     }
 
+    public boolean isAdmin() {
+        return Role.ADMIN.equals( role );
+    }
+
     public static User fromJson(String json) {
         return new Gson().fromJson(json, User.class);
     }
@@ -44,8 +53,12 @@ public class User extends GenericModel {
         return new Gson().fromJson( json, new TypeToken<List<User>>() {}.getType() );
     }
 
-    public static List<User> findUser(String username) {
-        return User.findAll();
+    public static User findUser( String username ) {
+        if( username == null ) {
+            return null;
+        }
+        username = username.trim();
+        return User.find(" username = ?", username).first();
     }
 
     public static List<User> findByUsernameExcludeBowls( String usernameStarts, Bowl bowl, Pagination pagination ) {

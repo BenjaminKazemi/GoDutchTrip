@@ -1,7 +1,7 @@
 package controllers.gui;
 
+import controllers.GuiController;
 import models.User;
-import util.controller.GuiController;
 
 import java.util.List;
 

@@ -5,6 +5,11 @@
 # Home page
 GET     /                                         Application.index
 GET     /app                                      Application.app
+GET     /signup                                   Application.signUp
+POST    /signup                                   Application.signUpUser
+GET     /signout                                  GuiController.signOut
+GET     /signin                                   GuiController.signIn
+POST    /signin                                   GuiController.signIn
 
 GET     /app/bowls/new                            gui.BowlsGuiController.create
 GET     /app/bowls/list                           gui.BowlsGuiController.list
@@ -18,6 +23,11 @@ GET     /app/users/new                            gui.UsersGuiController.create
 GET     /app/users/list                           gui.UsersGuiController.list
 GET     /app/users/{id}                           gui.UsersGuiController.show
 
+
+# Login
+POST    /services/signin                          services.LoginController.signIn
+GET     /services/signout                         services.LoginController.signOut
+GET     /services/auth                            services.LoginController.authenticated
 
 # Bowls
 POST    /services/bowls                           services.BowlsController.create

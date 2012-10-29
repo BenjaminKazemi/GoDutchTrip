@@ -4,7 +4,6 @@ import models.Bowl;
 import models.User;
 import util.controller.GenericController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +17,7 @@ import java.util.List;
 public class BowlsController extends GenericController {
 
     public static void create( Bowl bowl, List<Long> users ) {
+        bowl.owner = currentUser;
         bowl.save();
 
         if( users != null && !users.isEmpty() ) {

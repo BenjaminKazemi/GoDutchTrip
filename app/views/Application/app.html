@@ -3,14 +3,16 @@
 
 <div class="container-fluid">
 
-    <a href="@{gui.BowlsGuiController.create()}">New Bowl</a>
-    <br/>
-    <a href="@{gui.BowlsGuiController.list()}">Bowls</a>
-    <br/>
+    #{if models.enums.Role.ADMIN.equals( currentUser?.role ) }
+        <a href="@{gui.BowlsGuiController.create()}">New Bowl</a>
+        <br/>
+        <a href="@{gui.BowlsGuiController.list()}">Bowls</a>
+        <br/>
 
-    <a href="@{gui.UsersGuiController.create()}">New User</a>
-    <br/>
-    <a href="@{gui.UsersGuiController.list()}">Users</a>
-    <br/>
+        <a href="@{gui.UsersGuiController.create()}">New User</a>
+        <br/>
+        <a href="@{gui.UsersGuiController.list()}">Users</a>
+        <br/>
+    #{/if}
 
 </div>

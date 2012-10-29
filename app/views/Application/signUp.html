@@ -1,9 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'New Participant' /}
-
-<a href="@{gui.UsersGuiController.list()}">Users</a>
-<br/>
-<br/>
+#{set title:'Sign Up' /}
 
 <form id="createParticipant" class="form-horizontal" method="POST" action="@{services.UsersController.create()}">
     <h3>New User</h3>
@@ -25,9 +21,12 @@
 </form>
 
 <script type="text/javascript">
+
     function successFunc(data, textStatus, jqXHR) {
-        if(jqXHR.status == 200 ) {
-            alert( "User was saved successfully.")
+        if( jqXHR.status == 200 ) {
+            window.location = "@{GuiController.signIn()}";
         }
     }
+
 </script>
+

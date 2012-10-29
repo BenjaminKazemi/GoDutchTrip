@@ -1,6 +1,7 @@
 package controllers.services;
 
 import models.User;
+import models.enums.Role;
 import util.controller.GenericController;
 
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
 
 public class UsersController extends GenericController {
 
-    public static void create( User user) {
+    public static void create( User user ) {
+        user.role = Role.USER;
         user.save();
 
         renderJSON(user);
@@ -31,7 +33,7 @@ public class UsersController extends GenericController {
         renderJSON(user);
     }
 
-    public static void update( Long id, User user) {
+    public static void update( Long id, User user ) {
         User p = User.findById(id);
 
         if( user == null ) {

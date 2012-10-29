@@ -1,9 +1,7 @@
 import com.google.common.collect.ImmutableMap;
 import helper.GenericFunctionalTest;
-import models.Bowl;
-import models.Expense;
-import models.Participant;
-import models.User;
+import models.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import play.mvc.Http;
@@ -16,20 +14,14 @@ import java.util.List;
 
 public class BowlsControllerTest extends GenericFunctionalTest {
 
-    @Before
-    public void before() {
+//    @After
+    public void clear() {
+        deleteAllParticipants();
         Participant.deleteAll();
         Expense.deleteAll();
-        deleteAllBowlParticipants();
         Bowl.deleteAll();
-    }
-
-    public static void deleteAllBowlParticipants() {
-        List<Bowl> bowls = Bowl.findAll();
-        for( Bowl bowl:bowls ) {
-            bowl.users.clear();
-            bowl.save();
-        }
+        SecurityModel.deleteAll();
+        User.deleteAll();
     }
 
     @Test
@@ -115,7 +107,7 @@ public class BowlsControllerTest extends GenericFunctionalTest {
         Http.Response response = delete(Router.reverse(BowlsController_delete, ImmutableMap.of("id", (Object) bowl.id)).url);
         assertEquals(200, (Object)response.status );
 
-        response = GET(Router.reverse(BowlsController_read, ImmutableMap.of("id", (Object) bowl.id)).url);
+        response = get(Router.reverse(BowlsController_read, ImmutableMap.of("id", (Object) bowl.id)).url);
         assertEquals( Http.StatusCode.NOT_FOUND, (Object)response.status );
     }
 

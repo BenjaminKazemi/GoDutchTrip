@@ -16,9 +16,18 @@
 
 <body>
 
-    <a href="@{Application.app()}">Home</a>
-    <br/>
-    <br/>
+    <input type="hidden" id="key" value="${api_key}">
+    #{if currentUser != null }
+        <a href="@{GuiController.signOut()}">Sign Out</a>
+        <br/>
+
+        <a href="@{Application.app()}">Home</a>
+        <br/>
+        <br/>
+    #{/if}
+    #{else}
+        <a href="@{Application.signUp()}">Sign Up</a>
+    #{/else}
 
     #{doLayout /}
 
