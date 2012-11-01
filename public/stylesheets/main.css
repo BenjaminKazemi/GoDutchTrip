@@ -25,3 +25,20 @@ label.label-optional {
     margin-right: 0px;
     margin-top: 0px;
 }
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.center {
+    text-align: center;
+}
+
+.footer {
+    position: relative;
+    margin-top: -40px; /* negative value of footer height */
+    height: 40px;
+    clear:both;
+    border: none;
+    padding: 0px;
+}

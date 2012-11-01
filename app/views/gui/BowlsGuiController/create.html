@@ -25,7 +25,8 @@
 
     function successFunc(data, textStatus, jqXHR) {
         if(jqXHR.status == 200 ) {
-            alert( "Bowl was saved successfully.")
+            allert( data.id );
+            window.location = "/app/bowls/"+data.id;
         }
     }
 

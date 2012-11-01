@@ -23,6 +23,12 @@ import javax.persistence.UniqueConstraint;
        uniqueConstraints = @UniqueConstraint(name = "SECURITY_KEY_U", columnNames = {"securityKey"})
 )
 public class SecurityModel extends GenericModel {
+    public static final SecurityModel GUEST;
+
+    static {
+        GUEST = new SecurityModel( User.GUEST );
+    }
+
     private static final int KEY_LENGTH = 30;
 
     @IndexColumn( name = "SECURITY_KEY_I" )
@@ -79,7 +85,7 @@ public class SecurityModel extends GenericModel {
 
     public static SecurityModel findBySecurityKey( String key ) {
         if( key == null || key.isEmpty() || key.length() < KEY_LENGTH ) {
-            return null;
+            return SecurityModel.GUEST;
         }
 
         SecurityModel securityModel = find( "securityKey = ? AND active = true", key ).first();
@@ -93,7 +99,7 @@ public class SecurityModel extends GenericModel {
             invalidate( securityModel );
         }
 
-        return null;
+        return SecurityModel.GUEST;
     }
 
     public static User findUserBySecurityKey( String key ) {
@@ -103,7 +109,7 @@ public class SecurityModel extends GenericModel {
         }
         Logger.error( "An invalid key tried to access the system. Key: " + key );
 
-        return null;
+        return SecurityModel.GUEST.user;
     }
 
 }

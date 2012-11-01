@@ -24,6 +24,14 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_user")
 public class User extends GenericModel {
+    public static final User GUEST;
+
+    static {
+        GUEST = new User();
+        GUEST.username = "";
+        GUEST.role = Role.GUEST;
+    }
+
     public String fullName;
     public String email;
     public String username;
@@ -111,4 +119,7 @@ public class User extends GenericModel {
         return users;
     }
 
+    public boolean isGuest() {
+        return Role.GUEST.equals( role );
+    }
 }

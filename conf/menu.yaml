@@ -1,0 +1,31 @@
+- !!models.MenuItem
+  roles:
+    - ADMIN
+    - GUEST
+  title: Hunting
+  url: /
+
+- !!models.MenuItem
+  roles:
+    - ADMIN
+  title: Apartments
+  url: /apartments
+
+- !!models.MenuItem
+  roles:
+    - ADMIN
+  title: Admin
+  url: /admin
+
+- !!models.MenuItem
+  roles:
+    - GUEST
+  title: Help
+  url: /help
+
+- !!models.MenuItem
+  roles:
+    - GUEST
+  title: About
+  url: /about
+

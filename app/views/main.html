@@ -4,6 +4,7 @@
 <head>
     <title>#{get 'title' /}</title>
     <link rel="stylesheet" href="@{'/public/bootstrap-2.1.1/css/bootstrap.min.css'}">
+    <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
     #{get 'moreStyles' /}
 
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
@@ -16,18 +17,62 @@
 
 <body>
 
-    <input type="hidden" id="key" value="${api_key}">
-    #{if currentUser != null }
-        <a href="@{GuiController.signOut()}">Sign Out</a>
-        <br/>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <ul class="span1"> </ul>
 
-        <a href="@{Application.app()}">Home</a>
-        <br/>
-        <br/>
-    #{/if}
-    #{else}
-        <a href="@{Application.signUp()}">Sign Up</a>
-    #{/else}
+        <a class="brand" href="/app" style="color: #5bb75b;"> GoDutchTrip </a>
+
+        <div class="container">
+
+            <ul class="span2"> </ul>
+
+            <ul class="nav">
+                #{if menu?.menuItems?.size() > 0 }
+                    <ul class="nav">
+                        <li class="span1"> </li>
+                        #{list menu.menuItems, as:"i" }
+                            <li><a href="${i.url}">${i.title}</a></li>
+                        #{/list}
+                    </ul>
+                #{/if}
+
+                    #{if currentUser != null && !currentUser.isGuest() }
+                        <li class="dropdown right">
+                            <a href="#" class="dropdown-toggle" style="color: blue;" data-toggle="dropdown">
+                                ${currentUser.username}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/spp/setting">Setting</a></li>
+                                <li><a href="@{GuiController.signOut()}">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    #{/if}
+                    #{else}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Sign In
+                                <b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+
+                                <form action="@{GuiController.signIn( play.mvc.Router.reverse("Application.app").url )}">
+                                    <input id="username" style="margin-bottom: 15px;" type="text" name="username" size="30" placeholder="Username" />
+                                    <input id="password" style="margin-bottom: 15px;" type="password" name="password" size="30" placeholder="Password" />
+                                    <button type="submit" class="btn btn-primary" style="clear: left; width: 30%; height: 32px; font-size: 13px;" role="submit" name="commit">Sign In</button>
+                                </form>
+
+                            </div>
+                        </li>
+                    #{/else}
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="key" value="${api_key}">
 
     #{doLayout /}
 

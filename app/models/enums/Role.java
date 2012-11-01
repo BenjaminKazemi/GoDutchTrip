@@ -9,7 +9,7 @@ package models.enums;
  */
 
 public enum Role {
-    ADMIN("Admin"), USER("User");
+    ADMIN("Admin"), USER("User"), GUEST("Guest");
 
     public String label;
 
