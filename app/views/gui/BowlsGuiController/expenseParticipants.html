@@ -1,8 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Add Participant' /}
 
-<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
-<br/>
 <a href="@{gui.BowlsGuiController.show(expense.bowl.id)}">Go back to ${expense.bowl.title}</a>
 <br/>
 <a href="@{gui.BowlsGuiController.expense(expense.id)}">Go back to ${expense.cost} - ${expense.description}</a>
