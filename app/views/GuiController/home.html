@@ -1,8 +1,58 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<div class="container-fluid">
+<div class="container-fluid center">
 
-    You must sign in to the system in order to be able to use it!
+    <div class="well-large header">
+        Sign Up For Free!
+    </div>
+
+    <div class="row">
+        <div class="span5 box">
+            <form action="@{services.UsersController.create()}" id="createParticipant" method="POST" class="form-horizontal" style="margin-top: 10px;">
+                <fieldset>
+                    <table align="center" cellpadding="4">
+                        <tbody>
+                        <tr valign="middle">
+                            <td align="right"> Nickname: </td>
+                            <td align="left"> <input type="text" id="nickName" name="user.nickName"> </td>
+                        </tr>
+                        <tr valign="middle">
+                            <td align="right" valign="middle"> Email:</td>
+                            <td align="left"> <input type="text" id="email" name="user.email"> </td>
+                        </tr>
+                        <tr valign="middle">
+                            <td align="right"> Re-enter Email:</td>
+                            <td align="left"> <input type="text" id="reEnterEmail"> </td>
+                        </tr>
+                        <tr valign="middle">
+                            <td align="right"> Password:</td>
+                            <td align="left"> <input type="password" id="password" name="user.password"> </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <hr>
+                                <button type="submit" class="btn btn-primary" style="width: 150px; height: 30px" onclick="return submitForm('createParticipant', successFunc)">Sign Up</button>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
 
 </div>
+
+<script type="text/javascript">
+
+    function successFunc(data, textStatus, jqXHR) {
+        if( jqXHR.status == 200 ) {
+            alert("OK");
+        }
+    }
+
+</script>

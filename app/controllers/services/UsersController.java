@@ -49,8 +49,8 @@ public class UsersController extends GenericController {
         if( user.password != null ) {
             p.password = user.password;
         }
-        if( user.username != null ) {
-            p.username = user.username;
+        if( user.nickName != null ) {
+            p.nickName = user.nickName;
         }
         p.save();
 

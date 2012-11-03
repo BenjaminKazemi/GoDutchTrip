@@ -22,7 +22,7 @@
         Payer:
         <select class="input-medium" id="expense.payer.id" name="expense.payer.id">
             #{list users, as:"u"}
-                <option value="${u.id}"> ${u.username} </option>
+                <option value="${u.id}"> ${u.nickName} </option>
             #{/list}
         </select>
     <br/>

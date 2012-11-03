@@ -53,6 +53,7 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
     public static final String ExpensesController_deleteParticipant = "services.ExpensesController.deleteParticipant";
 
     protected static String key;
+    protected User currentUser = null;
 
     @Before
     public void before() throws UnsupportedEncodingException, IllegalAccessException {
@@ -63,7 +64,7 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
         SecurityModel.deleteAll();
         User.deleteAll();
 
-        login();
+        currentUser = login();
     }
 
     public static void deleteAllParticipants() {
@@ -83,16 +84,24 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
         }
     }
 
-    protected User login() throws IllegalAccessException, UnsupportedEncodingException {
+    protected User createUser() {
         double rand = Math.random();
         User user = new User();
-        user.username = "test_user_" + rand;
-        user.password = "test_password_" + rand;
+        user.nickName = "Ben";
+        user.email = "benyaminhk@yahoo.com";
+        user.nickName = "test_user" + rand;
+        user.password = "test_password" + rand;
         user.role = Role.USER;
-        user.fullName = "Test User " + rand;
+        user.fullName = "Test User";
         user.save();
 
-        key = getContent( post( Router.reverse(LoginController_signIn).url, "username", user.username, "password", user.password ) );
+        return user;
+    }
+
+    protected User login() throws IllegalAccessException, UnsupportedEncodingException {
+        User user = createUser();
+
+        key = getContent( post( Router.reverse(LoginController_signIn).url, "email", user.email, "password", user.password ) );
 
         return user;
     }
@@ -117,7 +126,15 @@ public abstract class GenericFunctionalTest extends FunctionalTest {
     }
 
     public Http.Response get(String url) {
-        return GET( newRequest(), url );
+        return response( GET( newRequest(), url ) );
+    }
+
+    private static Http.Response response( Http.Response response ) {
+        while( Http.StatusCode.redirect( response.status ) ) {
+            String url = response.getHeader("Location");
+            response = GET( url );
+        }
+        return response;
     }
 
     public static Http.Response post( String url, Object...objects ) throws UnsupportedEncodingException, IllegalAccessException {

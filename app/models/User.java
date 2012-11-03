@@ -23,18 +23,20 @@ import java.util.List;
 
 @Entity
 @Table(name = "tbl_user")
-public class User extends GenericModel {
+public class User extends GenericModel implements Comparable<User> {
+    @IgnoreGson
     public static final User GUEST;
 
     static {
         GUEST = new User();
-        GUEST.username = "";
+        GUEST.nickName = "";
+        GUEST.email = "";
         GUEST.role = Role.GUEST;
     }
 
+    public String nickName;
     public String fullName;
     public String email;
-    public String username;
     @IgnoreGson
     public String password;
     @Enumerated( EnumType.STRING )
@@ -42,8 +44,8 @@ public class User extends GenericModel {
 
     public User() {}
 
-    public User(String username, String password, String email, String fullName) {
-        this.username = username;
+    public User(String nickName, String password, String email, String fullName) {
+        this.nickName = nickName;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
@@ -61,20 +63,20 @@ public class User extends GenericModel {
         return new Gson().fromJson( json, new TypeToken<List<User>>() {}.getType() );
     }
 
-    public static User findUser( String username ) {
-        if( username == null ) {
+    public static User findByEmail(String email) {
+        if( email == null ) {
             return null;
         }
-        username = username.trim();
-        return User.find(" username = ?", username).first();
+        email = email.trim();
+        return User.find(" email = ?", email).first();
     }
 
-    public static List<User> findByUsernameExcludeBowls( String usernameStarts, Bowl bowl, Pagination pagination ) {
+    public static List<User> findByNickNameExcludeBowls( String nickName, Bowl bowl, Pagination pagination ) {
         List<User> users = new ArrayList<User>();
 
-        JPAQuery query = User.find(" lower(username) LIKE ? " +
+        JPAQuery query = User.find(" lower(nickName) LIKE ? " +
                 " AND id NOT IN (SELECT u.id FROM Bowl b JOIN b.users u WHERE b.id = ?)",
-                usernameStarts.toLowerCase() + "%",
+                nickName.toLowerCase() + "%",
                 bowl.id);
 
         if( pagination != null ) {
@@ -86,12 +88,12 @@ public class User extends GenericModel {
         return users;
     }
 
-    public static List<User> findByUsernameExcludeExpense( String usernameStarts, Expense expense, Pagination pagination ) {
+    public static List<User> findByNickNameExcludeExpense(String nickName, Expense expense, Pagination pagination) {
         List<User> users = new ArrayList<User>();
-        JPAQuery query = User.find(" lower(username) LIKE ? " +
+        JPAQuery query = User.find(" lower(nickName) LIKE ? " +
                 " AND id IN (SELECT u1.id FROM Bowl b JOIN b.users u1 WHERE b = ?) " +
                 " AND id NOT IN (SELECT p.user.id FROM Expense e JOIN e.participants p WHERE e.id = ?) ",
-                usernameStarts.toLowerCase() + "%",
+                nickName.toLowerCase() + "%",
                 expense.bowl,
                 expense.id);
 
@@ -122,4 +124,13 @@ public class User extends GenericModel {
     public boolean isGuest() {
         return Role.GUEST.equals( role );
     }
+
+    @Override
+    public int compareTo( User o ) {
+        if( o == null ) {
+            return 1;
+        }
+        return this.email.compareTo( o.email );
+    }
+
 }

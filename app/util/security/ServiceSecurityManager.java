@@ -2,8 +2,6 @@ package util.security;
 
 import models.SecurityModel;
 import models.User;
-import play.Logger;
-import play.mvc.Scope;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,8 +21,8 @@ public class ServiceSecurityManager implements ISecurityManager {
         return SecurityModel.findBySecurityKey( key );
     }
 
-    public SecurityModel signIn( String username, String password ) {
-        User user = User.findUser( username );
+    public SecurityModel signIn( String email, String password ) {
+        User user = User.findByEmail(email);
         if( user != null ) {
             if( user.password.equals( password ) ) {
                 return SecurityModel.create( user );

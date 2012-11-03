@@ -51,7 +51,7 @@ public class BowlsGuiController extends GuiController {
         Bowl bowl = Bowl.findById( id );
         List<User> users = null;
         if( query != null && !query.isEmpty() ) {
-            users = User.findByUsernameExcludeBowls(query, bowl, new Pagination(1, 10));
+            users = User.findByNickNameExcludeBowls(query, bowl, new Pagination(1, 10));
         }
 
         render( bowl, users, query );
@@ -75,7 +75,7 @@ public class BowlsGuiController extends GuiController {
         Expense expense = Expense.findById( id );
         List<User> users = null;
         if( query != null && !query.isEmpty() ) {
-            users = User.findByUsernameExcludeExpense(query, expense, new Pagination(1, 10));
+            users = User.findByNickNameExcludeExpense(query, expense, new Pagination(1, 10));
         }
 
         render( expense, users, query );

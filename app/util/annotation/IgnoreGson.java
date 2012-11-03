@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * To change this template use File | Settings | File Templates.
  */
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD, ElementType.TYPE} )
+@Retention( RetentionPolicy.RUNTIME )
+@Target( {ElementType.FIELD, ElementType.TYPE, ElementType.LOCAL_VARIABLE} )
 public @interface IgnoreGson {
 }

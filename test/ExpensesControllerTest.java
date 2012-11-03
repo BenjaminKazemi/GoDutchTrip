@@ -62,7 +62,7 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
         Bowl bowl = new Bowl( "chicago Trip", "description", new Date() );
         bowl = Bowl.fromJson( getContent( post(Router.reverse(BowlsController_create).url, "bowl", bowl) ) );
 
-        User user = new User( "Username", "Password", "EMail", "Full Name" );
+        User user = new User( "nickName", "Password", "EMail", "Full Name" );
         user = User.fromJson(getContent(post(Router.reverse(UsersController_create).url, "user", user)));
         bowl = Bowl.fromJson( getContent( put(Router.reverse(BowlsController_addUser, ImmutableMap.of("id", (Object) bowl.id, "pId", user.id)).url) ) );
 
@@ -73,13 +73,13 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
         assertEquals( expense.payer.id, bowl.expenses.get(0).payer.id );
         assertEquals( expense.payer.email, bowl.expenses.get(0).payer.email );
         assertEquals( expense.payer.fullName, bowl.expenses.get(0).payer.fullName );
-        assertEquals( expense.payer.username, bowl.expenses.get(0).payer.username );
+        assertEquals( expense.payer.nickName, bowl.expenses.get(0).payer.nickName );
 
         assertEquals( 1, bowl.expenses.get(0).participants.size() );
         assertEquals( expense.payer.id, bowl.expenses.get(0).participants.get(0).user.id );
         assertEquals( expense.payer.email, bowl.expenses.get(0).participants.get(0).user.email );
         assertEquals( expense.payer.fullName, bowl.expenses.get(0).participants.get(0).user.fullName );
-        assertEquals( expense.payer.username, bowl.expenses.get(0).participants.get(0).user.username );
+        assertEquals( expense.payer.nickName, bowl.expenses.get(0).participants.get(0).user.nickName );
     }
 
     @Test
@@ -134,16 +134,16 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
 
         expense = Bowl.fromJson( getContent( post(Router.reverse(ExpensesController_create, ImmutableMap.of("id", (Object) bowl.id)).url, "expenses", expense) ) ).expenses.get(0);
 
-        User user = new User( "Username", "Password", "EMail", "Full Name" );
+        User user = new User( "nickName", "Password", "EMail", "Full Name" );
         user = User.fromJson(getContent(post(Router.reverse(UsersController_create).url, "user", user)));
 
         expense = Expense.fromJson( getContent( put(Router.reverse(ExpensesController_addParticipant, ImmutableMap.of("id", (Object) expense.id, "pId", user.id)).url) ) );
         assertEquals( 1, expense.participants.size() );
         assertEquals( expense.participants.get(0).user.email, user.email );
         assertEquals( expense.participants.get(0).user.fullName, user.fullName );
-        assertEquals( expense.participants.get(0).user.username, user.username);
+        assertEquals( expense.participants.get(0).user.nickName, user.nickName);
 
-        user = new User( "Username", "Password", "EMail", "Full Name" );
+        user = new User( "nickName", "Password", "EMail", "Full Name" );
         user = User.fromJson(getContent(post(Router.reverse(UsersController_create).url, "user", user)));
 
         expense = Expense.fromJson( getContent( put(Router.reverse(ExpensesController_addParticipant, ImmutableMap.of("id", (Object) expense.id, "pId", user.id)).url) ) );
@@ -151,11 +151,11 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
 
         assertEquals( expense.participants.get(0).user.email, user.email );
         assertEquals( expense.participants.get(0).user.fullName, user.fullName );
-        assertEquals( expense.participants.get(0).user.username, user.username );
+        assertEquals( expense.participants.get(0).user.nickName, user.nickName );
 
         assertEquals( expense.participants.get(1).user.email, user.email );
         assertEquals( expense.participants.get(1).user.fullName, user.fullName );
-        assertEquals( expense.participants.get(1).user.username, user.username );
+        assertEquals( expense.participants.get(1).user.nickName, user.nickName );
 
     }
 
@@ -167,13 +167,13 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
 
         expense = Bowl.fromJson( getContent( post(Router.reverse(ExpensesController_create, ImmutableMap.of("id", (Object) bowl.id)).url, "expense", expense) ) ).expenses.get(0);
 
-        User user = new User( "Username", "Password", "EMail", "Full Name" );
+        User user = new User( "nickName", "Password", "EMail", "Full Name" );
         user = User.fromJson(getContent(post(Router.reverse(UsersController_create).url, "user", user)));
 
         expense = Expense.fromJson( getContent( put(Router.reverse(ExpensesController_addParticipant, ImmutableMap.of("id", (Object) expense.id, "pId", user.id)).url) ) );
         assertEquals( 1, expense.participants.size() );
 
-        user = new User( "Username", "Password", "EMail", "Full Name" );
+        user = new User( "nickName", "Password", "EMail", "Full Name" );
         user = User.fromJson(getContent(post(Router.reverse(UsersController_create).url, "user", user)));
 
         expense = Expense.fromJson( getContent( put(Router.reverse(ExpensesController_addParticipant, ImmutableMap.of("id", (Object) expense.id, "pId", user.id)).url) ) );
@@ -200,37 +200,41 @@ public class ExpensesControllerTest extends GenericFunctionalTest {
 
         expense = Bowl.fromJson( getContent( post(Router.reverse(ExpensesController_create, ImmutableMap.of("id", (Object) bowl.id)).url, "expense", expense) ) ).expenses.get(0);
 
-        User tmpUser = new User( "Username", "Password", "EMail", "Full Name" );
+        User tmpUser = new User( "nickName", "Password", "EMail", "Full Name" );
         post( Router.reverse(UsersController_create).url, "user", tmpUser );
 
-        User user0 = new User( "Username0", "Password0", "EMail0", "Full Name 0" );
+        User user0 = new User( "nickName0", "Password0", "EMail0", "Full Name 0" );
         user0 = User.fromJson(getContent( post( Router.reverse(UsersController_create).url, "user", user0 ) ) );
         put(Router.reverse(BowlsController_addUser, ImmutableMap.of("id", (Object) bowl.id, "pId", user0.id)).url );
 
-        User user1 = new User( "Username1", "Password1", "EMail1", "Full Name 1" );
+        User user1 = new User( "nickName1", "Password1", "EMail1", "Full Name 1" );
         user1 = User.fromJson(getContent( post( Router.reverse(UsersController_create).url, "user", user1 ) ) );
         put(Router.reverse(BowlsController_addUser, ImmutableMap.of("id", (Object) bowl.id, "pId", user1.id)).url);
 
-        User user2 = new User( "Username2", "Password2", "EMail2", "Full Name 2" );
+        User user2 = new User( "nickName2", "Password2", "EMail2", "Full Name 2" );
         user2 = User.fromJson(getContent( post( Router.reverse(UsersController_create).url, "user", user2 ) ) );
         put(Router.reverse(BowlsController_addUser, ImmutableMap.of("id", (Object) bowl.id, "pId", user2.id)).url);
 
         put(Router.reverse(ExpensesController_addParticipant, ImmutableMap.of("id", (Object) expense.id, "pId", user0.id)).url);
         expense = Expense.fromJson( getContent( put(Router.reverse(ExpensesController_addAllParticipants, ImmutableMap.of("id", (Object) expense.id)).url) ) );
 
-        assertEquals(3, expense.participants.size());
+        assertEquals( 4, expense.participants.size());
 
+        assertEquals( expense.participants.get(0).user.nickName, user0.nickName );
         assertEquals( expense.participants.get(0).user.email, user0.email );
         assertEquals( expense.participants.get(0).user.fullName, user0.fullName );
-        assertEquals( expense.participants.get(0).user.username, user0.username );
 
+        assertEquals( expense.participants.get(1).user.nickName, user1.nickName );
         assertEquals( expense.participants.get(1).user.email, user1.email );
         assertEquals( expense.participants.get(1).user.fullName, user1.fullName );
-        assertEquals( expense.participants.get(1).user.username, user1.username );
 
-        assertEquals( expense.participants.get(2).user.email, user2.email );
-        assertEquals( expense.participants.get(2).user.fullName, user2.fullName );
-        assertEquals( expense.participants.get(2).user.username, user2.username );
+        assertEquals( expense.participants.get(2).user.nickName, currentUser.nickName );
+        assertEquals( expense.participants.get(2).user.email, currentUser.email );
+        assertEquals( expense.participants.get(2).user.fullName, currentUser.fullName );
+
+        assertEquals( expense.participants.get(3).user.nickName, user2.nickName );
+        assertEquals( expense.participants.get(3).user.email, user2.email );
+        assertEquals( expense.participants.get(3).user.fullName, user2.fullName );
 
     }
 

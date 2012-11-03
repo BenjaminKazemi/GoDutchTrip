@@ -12,9 +12,7 @@ import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,7 +27,7 @@ public abstract class GenericModel extends Model {
         return new GsonBuilder().setExclusionStrategies(new MyExclusionStrategy()).create().toJson( this );
     }
 
-    public String toParams(String objName) throws IllegalAccessException, UnsupportedEncodingException {
+    public String toParams(String objName ) throws IllegalAccessException, UnsupportedEncodingException {
         String params = "";
         Iterator<Field> fields = ImmutableList.copyOf( getClass().getFields() ).iterator();
         String klassName = objName;
@@ -53,7 +51,9 @@ public abstract class GenericModel extends Model {
                         }
                     }
                 } else if( value instanceof GenericModel ) {
-                    params += ((GenericModel)value).toParams(klassName + "." + tmp.getName());
+                    if( tmp.getAnnotation(IgnoreGson.class) == null ) {
+                        params += ((GenericModel)value).toParams( klassName + "." + tmp.getName() );
+                    }
                 } else {
                     params += klassName + "." + tmp.getName() + "=" + URLEncoder.encode( value.toString(), Charset.defaultCharset().toString() );
                 }

@@ -27,27 +27,16 @@ public class LoginControllerTest extends GenericFunctionalTest {
         User.deleteAll();
     }
 
-    private User createUser() {
-        User user = new User();
-        user.username = "test_user";
-        user.password = "test_password";
-        user.role = Role.USER;
-        user.fullName = "Test User";
-        user.save();
-
-        return user;
-    }
-
     @Test
     public void signIn() throws IllegalAccessException, UnsupportedEncodingException {
         User user = createUser();
 
-        String key = getContent( post( Router.reverse(LoginController_signIn).url, "username", user.username, "password", user.password ) );
+        String key = getContent( post( Router.reverse(LoginController_signIn).url, "email", user.email, "password", user.password ) );
         User retUser = new ServiceSecurityManager().getUser( key );
 
         assertNotNull( retUser );
         assertEquals( user.id, retUser.id );
-        assertEquals( user.username, retUser.username );
+        assertEquals( user.nickName, retUser.nickName );
         assertEquals( user.password, retUser.password );
         assertEquals( user.role, retUser.role );
     }
@@ -63,7 +52,7 @@ public class LoginControllerTest extends GenericFunctionalTest {
         assertEquals( 200, response.status.intValue() );
 
         retUser = new ServiceSecurityManager().getUser( key );
-        assertNull( retUser );
+        assertEquals( User.GUEST, retUser );
     }
 
     @Test
@@ -76,7 +65,7 @@ public class LoginControllerTest extends GenericFunctionalTest {
         logout();
 
         User retUser = new ServiceSecurityManager().getUser( key );
-        assertNull(retUser);
+        assertEquals( User.GUEST, retUser );
     }
 
 }

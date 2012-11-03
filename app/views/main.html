@@ -19,62 +19,67 @@
 
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-        <ul class="span1"> </ul>
-
-        <a class="brand" href="/app" style="color: #5bb75b;"> GoDutchTrip </a>
+        <div class="container-fluid">
 
         <div class="container">
-
-            <ul class="span2"> </ul>
+            <a class="brand" href="/app" style="color: #5bb75b;"> Let's "Go Dutch"! </a>
 
             <ul class="nav">
                 #{if menu?.menuItems?.size() > 0 }
                     <ul class="nav">
-                        <li class="span1"> </li>
                         #{list menu.menuItems, as:"i" }
                             <li><a href="${i.url}">${i.title}</a></li>
                         #{/list}
                     </ul>
                 #{/if}
 
+            </ul>
                     #{if currentUser != null && !currentUser.isGuest() }
-                        <li class="dropdown right">
-                            <a href="#" class="dropdown-toggle" style="color: blue;" data-toggle="dropdown">
-                                ${currentUser.username}
+                        <div class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle btn" style="color: #00008b;" data-toggle="dropdown">
+                                ${currentUser.nickName}
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/spp/setting">Setting</a></li>
                                 <li><a href="@{GuiController.signOut()}">Sign Out</a></li>
                             </ul>
-                        </li>
+                        </div>
                     #{/if}
                     #{else}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Sign In
+                        <div class="dropdown pull-right">
+                            <a href="#" style="color: #00008b;" class="dropdown-toggle btn" data-toggle="dropdown">
+                                Please Sign In
                                 <b class="caret"></b>
                             </a>
                             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 
                                 <form action="@{GuiController.signIn( play.mvc.Router.reverse("Application.app").url )}">
-                                    <input id="username" style="margin-bottom: 15px;" type="text" name="username" size="30" placeholder="Username" />
+                                    <input id="email" style="margin-bottom: 15px;" type="text" name="email" size="30" placeholder="Email" />
                                     <input id="password" style="margin-bottom: 15px;" type="password" name="password" size="30" placeholder="Password" />
-                                    <button type="submit" class="btn btn-primary" style="clear: left; width: 30%; height: 32px; font-size: 13px;" role="submit" name="commit">Sign In</button>
+                                    <button type="submit" class="btn btn-primary" style="clear: left; width: 70px; height: 30px; font-size: 13px;" role="submit" name="commit">Sign In</button>
                                 </form>
 
                             </div>
-                        </li>
+                        </div>
                     #{/else}
 
-            </ul>
+        </div>
         </div>
     </div>
 </div>
 
-<input type="hidden" id="key" value="${api_key}">
+<div class="container-fluid">
+    <input type="hidden" id="key" value="${api_key}">
 
-    #{doLayout /}
+    <div class="container">
+        #{doLayout /}
+    </div>
+</div>
+
+<footer class="footer">
+    <p> &copy; 2012 GoDutchTrip.com </p>
+</footer>
 
 </body>
 </html>

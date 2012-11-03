@@ -13,6 +13,6 @@ import models.User;
 
 public interface ISecurityManager {
     User getUser( String key );
-    SecurityModel signIn( String username, String password );
+    SecurityModel signIn( String email, String password );
     boolean signOut( String key );
 }

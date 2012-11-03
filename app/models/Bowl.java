@@ -20,7 +20,7 @@ public class Bowl extends GenericModel {
 
     @ManyToMany
     @JoinTable( name = "tbl_bowl_user", joinColumns = {@JoinColumn(name = "bowl_id")} )
-    @OrderBy("username")
+    @OrderBy("nickName")
     public List<User> users = new ArrayList<User>();
 
     @OneToMany( mappedBy = "bowl", cascade = CascadeType.ALL )

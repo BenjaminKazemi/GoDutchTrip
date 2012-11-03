@@ -23,7 +23,7 @@
                 #{list expense.participants, as:'p'}
                 <tr>
                     <td class="span2">
-                        ${p.user.username}
+                        ${p.user.nickName}
                     </td>
                     <td>
                         ${p.quota}
@@ -47,7 +47,7 @@
 <form id="searchParticipant" class="form-horizontal" method="PUT" action="@{gui.BowlsGuiController.expenseParticipants(expense.id)}">
     <h3>Search Participants</h3>
     <br/>
-        <input type="text" class="input-large" id="query" name="query" placeholder="Username" value="${query}" />
+        <input type="text" class="input-large" id="query" name="query" placeholder="nickName" value="${query}" />
         <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
@@ -55,7 +55,7 @@
     <tbody>
     #{list users, as:'p'}
         <tr>
-            <td> ${p.username}</td>
+            <td> ${p.nickName}</td>
             <td>
                 <form id="addParticipant_${p.id}" method="PUT" action="@{services.ExpensesController.addParticipant(expense.id, p.id)}">
                     <button class="btn btn-primary btn-mini" onclick="return submitForm('addParticipant_${p.id}', successDeleteFunc)">Add</button>

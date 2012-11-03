@@ -71,7 +71,7 @@
                 #{list bowlParticipants, as:'p'}
                     <tr>
                         <td class="span2">
-                            ${p.user.username}
+                            ${p.user.nickName}
                         </td>
                         <td class="span1">
                             ${p.quota}
@@ -106,13 +106,13 @@
                 #{list bills, as:'b'}
                 <tr>
                     <td class="span2">
-                    ${b.from?.username}
+                    ${b.from?.nickName}
                     </td>
                     <td class="span1">
                     ${b.amount}
                     </td>
                     <td class="span2">
-                    ${b.to?.username}
+                    ${b.to?.nickName}
                     </td>
                 </tr>
                 #{/list}

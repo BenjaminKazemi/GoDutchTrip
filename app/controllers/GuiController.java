@@ -45,13 +45,13 @@ public class GuiController extends Controller {
         home();
     }
 
-    public static void signIn( String url, String username, String password ) {
+    public static void signIn( String url, String nickName, String password ) {
         if( url == null || url.isEmpty() ) {
             url = Router.reverse("Application.app").url;
         }
 
-        if( username != null && !username.isEmpty() && password != null && !password.isEmpty() ) {
-            SecurityModel securityModel = securityManager.signIn( username, password );
+        if( nickName != null && !nickName.isEmpty() && password != null && !password.isEmpty() ) {
+            SecurityModel securityModel = securityManager.signIn( nickName, password );
             if( securityModel != null ) {
                 currentUser = securityModel.user;
                 session.put( "api_key", securityModel.securityKey );

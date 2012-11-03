@@ -15,8 +15,8 @@ import util.security.ServiceSecurityManager;
 
 public class LoginController extends Controller {
 
-    public static void signIn( String username, String password ) {
-        SecurityModel securityModel = new ServiceSecurityManager().signIn( username, password );
+    public static void signIn( String email, String password ) {
+        SecurityModel securityModel = new ServiceSecurityManager().signIn( email, password );
         if( securityModel != null ) {
             renderText(securityModel.securityKey);
         }

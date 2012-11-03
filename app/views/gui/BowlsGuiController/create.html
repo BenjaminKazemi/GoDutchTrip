@@ -1,10 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'New Bowl' /}
 
-<a href="@{gui.BowlsGuiController.list()}">Bowls</a>
-<br/>
-<br/>
-
 <form id="createBowl" class="form-horizontal" method="POST" action="@{services.BowlsController.create()}">
     <h3>New Bowl</h3>
     <br/>
@@ -25,7 +21,6 @@
 
     function successFunc(data, textStatus, jqXHR) {
         if(jqXHR.status == 200 ) {
-            allert( data.id );
             window.location = "/app/bowls/"+data.id;
         }
     }
